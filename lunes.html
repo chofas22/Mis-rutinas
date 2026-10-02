@@ -16,15 +16,6 @@
             display: flex;
             justify-content: center;
         }
-        .exercise-img {
-            width: 90px;
-            height: 65px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #e87c3e;
-            flex-shrink: 0;
-        }
-
 
         .app-container {
             max-width: 450px;
@@ -121,19 +112,13 @@
             border-color: #e87c3e;
         }
 
-        .image-placeholder {
+        /* Estilo para las imágenes reales */
+        .exercise-img {
             width: 90px;
             height: 65px;
-            background-color: #1a1a1a;
-            border: 1px dashed #e87c3e;
+            object-fit: cover;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #e87c3e;
-            font-weight: bold;
-            font-size: 0.7rem;
-            text-align: center;
+            border: 1px solid #e87c3e;
             flex-shrink: 0;
         }
 
@@ -283,7 +268,7 @@
         <h3 class="section-title">2. Fuerza y Tonificación (34 min)</h3>
 
         <div class="exercise-card-strength" onclick="toggleCard(this)">
-            ⁠<img src="IMG_8988.jpeg" alt="Lat Pulldown" class="exercise-img">⁠
+            <img src="IMG_8988.jpeg" alt="Lat Pulldown" class="exercise-img">
             <div class="card-content">
                 <p class="card-title">LAT PULLDOWN</p>
                 <p class="card-subtitle">Jalón al pecho controlado</p>
@@ -296,7 +281,7 @@
         </div>
 
         <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <div class="image-placeholder">2 PANELES</div>
+            <img src="IMG_8993.jpeg" alt="Machine Chest Press" class="exercise-img">
             <div class="card-content">
                 <p class="card-title">MACHINE CHEST PRESS</p>
                 <p class="card-subtitle">Press de pecho en máquina</p>
@@ -309,7 +294,7 @@
         </div>
 
         <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <div class="image-placeholder">2 PANELES</div>
+            <img src="IMG_8992.jpeg" alt="Seated Cable Row" class="exercise-img">
             <div class="card-content">
                 <p class="card-title">SEATED CABLE ROW</p>
                 <p class="card-subtitle">Remo sentado en polea</p>
@@ -322,7 +307,7 @@
         </div>
 
         <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <div class="image-placeholder">2 PANELES</div>
+            <img src="IMG_8991.jpeg" alt="Dumbbell Shoulder Press" class="exercise-img">
             <div class="card-content">
                 <p class="card-title">DUMBBELL SHOULDER PRESS</p>
                 <p class="card-subtitle">Press de hombros con mancuernas</p>
@@ -335,7 +320,7 @@
         </div>
 
         <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <div class="image-placeholder">2 PANELES</div>
+            <img src="IMG_8990.jpeg" alt="Dumbbell Bicep Curl" class="exercise-img">
             <div class="card-content">
                 <p class="card-title">DUMBBELL BICEP CURL</p>
                 <p class="card-subtitle">Curl de bíceps estricto</p>
@@ -348,7 +333,7 @@
         </div>
 
         <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <div class="image-placeholder">2 PANELES</div>
+            <img src="IMG_8989.jpeg" alt="Cable Tricep Pushdown" class="exercise-img">
             <div class="card-content">
                 <p class="card-title">CABLE TRICEP PUSHDOWN</p>
                 <p class="card-subtitle">Extensión de tríceps en polea</p>
