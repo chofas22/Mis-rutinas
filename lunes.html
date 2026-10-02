@@ -122,7 +122,6 @@
             margin: 0;
         }
 
-        /* Estilo para las imágenes de referencia dentro de las tarjetas */
         .exercise-img {
             width: 100%;
             height: 160px;
@@ -175,7 +174,6 @@
         #timer-bubble:hover {
             transform: scale(1.08);
         }
-
         #timer-bubble svg {
             width: 26px;
             height: 26px;
@@ -207,14 +205,12 @@
             border-bottom: 1px solid #333;
             padding-bottom: 8px;
         }
-
         .timer-header h3 {
             margin: 0;
             font-size: 0.95rem;
             color: #e87c3e;
             text-transform: uppercase;
         }
-
         .close-timer {
             background: none;
             border: none;
@@ -232,7 +228,6 @@
             gap: 10px;
             margin-bottom: 12px;
         }
-
         .timer-row {
             display: flex;
             justify-content: space-between;
@@ -242,39 +237,32 @@
             border-radius: 8px;
             border: 1px solid #333;
         }
-
         .timer-row label {
             font-size: 0.75rem;
             color: #ccc;
             text-transform: uppercase;
             font-weight: 700;
         }
-
         .timer-input-wrapper {
             display: flex;
             align-items: center;
             gap: 6px;
         }
-
+        .timer-row input, .timer-row select {
+            background-color: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+        }
         .timer-row input {
             width: 55px;
             padding: 6px;
-            background-color: #1a1a1a;
-            border: 1px solid #444;
-            border-radius: 6px;
-            color: #fff;
             text-align: center;
-            font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
         }
-
         .timer-row select {
             padding: 6px;
-            background-color: #1a1a1a;
-            border: 1px solid #444;
-            border-radius: 6px;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
             font-size: 0.8rem;
             cursor: pointer;
         }
@@ -287,7 +275,6 @@
             padding: 12px;
             margin-bottom: 12px;
         }
-
         .timer-status {
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -296,14 +283,12 @@
             margin-bottom: 4px;
             font-weight: 700;
         }
-
         .timer-clock {
             font-size: 2.2rem;
             font-weight: 800;
             color: #ffffff;
             margin: 0;
         }
-
         .timer-rounds-info {
             font-size: 0.75rem;
             color: #888;
@@ -315,7 +300,6 @@
             display: flex;
             gap: 8px;
         }
-
         .timer-btn {
             padding: 12px;
             border: none;
@@ -327,20 +311,17 @@
             align-items: center;
             transition: background 0.2s;
         }
-
         .timer-btn svg {
             width: 20px;
             height: 20px;
             fill: currentColor;
         }
-
         .btn-main {
             background-color: #e87c3e;
             color: #050505;
             flex: 1;
         }
         .btn-main:hover { background-color: #ff8c4a; }
-
         .btn-reset-icon {
             background-color: #2a2a2a;
             border: 1px solid #444;
@@ -348,10 +329,6 @@
             width: 48px;
             flex-shrink: 0;
             border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
         .btn-reset-icon:hover {
             background-color: #383838;
@@ -370,7 +347,7 @@
             <p>Duración: 45 min • Intensidad Controlada</p>
         </div>
 
-        <!-- 1. CALENTAMIENTO -->
+        <!-- 1. CALENTAMIENTO (SIN IMÁGENES) -->
         <h3 class="section-title">1. Calentamiento (6 min)</h3>
 
         <div class="exercise-card" onclick="toggleCard(this)">
@@ -379,7 +356,6 @@
                 <p class="card-subtitle">MOVIMIENTO SUAVE</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="Marcha en el lugar" class="exercise-img">
                     <p><strong>Movimiento:</strong> Marcha de pie elevando levemente las rodillas y balanceando los brazos.</p>
                     <p><strong>Para qué sirve:</strong> Eleva las pulsaciones y lubrica las articulaciones principales.</p>
                 </div>
@@ -392,7 +368,6 @@
                 <p class="card-subtitle">MOVILIDAD DE HOMBROS</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" alt="Círculos de brazos" class="exercise-img">
                     <p><strong>Movimiento:</strong> Realiza círculos amplios con los brazos hacia adelante y hacia atrás.</p>
                     <p><strong>Para qué sirve:</strong> Prepara el manguito rotador y previene lesiones en el tren superior.</p>
                 </div>
@@ -405,7 +380,6 @@
                 <p class="card-subtitle">MOVILIDAD DE TORSO</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80" alt="Rotaciones de tronco" class="exercise-img">
                     <p><strong>Movimiento:</strong> Gira suavemente el torso de lado a lado manteniendo la cadera estable.</p>
                     <p><strong>Para qué sirve:</strong> Activa la musculatura de la cintura y la columna dorsal.</p>
                 </div>
@@ -418,7 +392,6 @@
                 <p class="card-subtitle">ACTIVACIÓN ESCAPULAR</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1508215885820-4ff85e5f24d0?auto=format&fit=crop&w=600&q=80" alt="Aperturas de pecho" class="exercise-img">
                     <p><strong>Movimiento:</strong> Abre y cierra los brazos a la altura del pecho apretando la espalda atrás.</p>
                     <p><strong>Para qué sirve:</strong> Despierta los músculos de la parte alta de la espalda y hombros.</p>
                 </div>
@@ -431,7 +404,6 @@
                 <p class="card-subtitle">ESTIRAMIENTO DINÁMICO</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="Inclinaciones laterales" class="exercise-img">
                     <p><strong>Movimiento:</strong> Con una mano en la cadera, extiende el otro brazo por encima de la cabeza inclinándote.</p>
                     <p><strong>Para qué sirve:</strong> Estira y activa los oblicuos y los costados del torso.</p>
                 </div>
@@ -444,95 +416,94 @@
                 <p class="card-subtitle">CARDIO LIGERO</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1434682881907-b43d60172b62?auto=format&fit=crop&w=600&q=80" alt="Rebotes suaves" class="exercise-img">
                     <p><strong>Movimiento:</strong> Pequeños saltos suaves en el sitio o elevaciones de talones.</p>
                     <p><strong>Para qué sirve:</strong> Lleva el cuerpo a la temperatura ideal para iniciar los bloques de fuerza.</p>
                 </div>
             </div>
         </div>
 
-        <!-- 2. BLOQUE PRINCIPAL -->
+        <!-- 2. BLOQUE PRINCIPAL (CON SUS IMÁGENES ASIGNADAS) -->
         <h3 class="section-title">2. Bloque Principal - Tren Superior & Core (32 min)</h3>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">FLEXIONES INCLINADAS O EN RODILLAS</p>
-                <p class="card-subtitle">PECHO Y TRÍCEPS</p>
+                <p class="card-title">LAT PULLDOWN</p>
+                <p class="card-subtitle">ESPALDA Y DORSALES</p>
                 <p class="card-details">3 Series x 10-12 Repeticiones</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=600&q=80" alt="Flexiones" class="exercise-img">
-                    <p><strong>Movimiento:</strong> Apoya las manos en una superficie elevada (o rodillas en el suelo) y baja el pecho de forma controlada.</p>
-                    <p><strong>Para qué sirve:</strong> Fortalece el pectoral, los hombros y los brazos adaptado a tu nivel.</p>
+                    <img src="IMG_8988.JPG" alt="Lat Pulldown" class="exercise-img">
+                    <p><strong>Movimiento:</strong> Jala la barra hacia la parte superior del pecho contrayendo la espalda.</p>
+                    <p><strong>Para qué sirve:</strong> Fortalece los dorsales y da amplitud a la espalda.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">REMO CON MANCUERNAS A UNA MANO</p>
-                <p class="card-subtitle">ESPALDA Y BÍCEPS</p>
-                <p class="card-details">3 Series x 10 Repeticiones (cada lado)</p>
-                <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80" alt="Remo con mancuernas" class="exercise-img">
-                    <p><strong>Movimiento:</strong> Apoyada en una silla, eleva la mancuerna hacia la cadera contrayendo la espalda.</p>
-                    <p><strong>Para qué sirve:</strong> Esculpe la espalda alta y mejora la postura corporal.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">PRESS DE HOMBROS SENTADA</p>
-                <p class="card-subtitle">DELTOIDES</p>
+                <p class="card-title">CABLE TRICEP</p>
+                <p class="card-subtitle">TRÍCEPS</p>
                 <p class="card-details">3 Series x 10 Repeticiones</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80" alt="Press de hombros" class="exercise-img">
-                    <p><strong>Movimiento:</strong> Con mancuernas a la altura de los hombros, empuja hacia arriba por encima de la cabeza.</p>
-                    <p><strong>Para qué sirve:</strong> Define los hombros y da fuerza a todo el tren superior.</p>
+                    <img src="IMG_8989.JPG" alt="Cable Tricep" class="exercise-img">
+                    <p><strong>Movimiento:</strong> Extiende los brazos hacia abajo usando la polea con control.</p>
+                    <p><strong>Para qué sirve:</strong> Esculpe y tonifica la parte posterior de los brazos.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">ELEVACIONES LATERALES</p>
-                <p class="card-subtitle">HOMBRO LATERAL</p>
+                <p class="card-title">DUMBBELL BICEP CURL</p>
+                <p class="card-subtitle">BÍCEPS</p>
+                <p class="card-details">3 Series x 10 Repeticiones</p>
+                <div class="card-description">
+                    <img src="IMG_8990.JPG" alt="Dumbbell Bicep Curl" class="exercise-img">
+                    <p><strong>Movimiento:</strong> Flexiona los codos elevando las mancuernas hacia los hombros.</p>
+                    <p><strong>Para qué sirve:</strong> Fortalece y define los bíceps.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">DUMBBELL SHOULDER PRESS</p>
+                <p class="card-subtitle">DELTOIDES</p>
                 <p class="card-details">3 Series x 12 Repeticiones</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=600&q=80" alt="Elevaciones laterales" class="exercise-img">
-                    <p><strong>Movimiento:</strong> Eleva los brazos hacia los lados con una ligera flexión en los codos hasta la altura de los hombros.</p>
-                    <p><strong>Para qué sirve:</strong> Da amplitud visual a los hombros y estiliza los brazos.</p>
+                    <img src="IMG_8991.JPG" alt="Dumbbell Shoulder Press" class="exercise-img">
+                    <p><strong>Movimiento:</strong> Empuja las mancuernas hacia arriba por encima de la cabeza.</p>
+                    <p><strong>Para qué sirve:</strong> Da fuerza y definición a los hombros.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">PLANCHA FRONTAL CON TOQUES DE HOMBRO</p>
-                <p class="card-subtitle">CORE Y ESTABILIDAD</p>
+                <p class="card-title">SEATED CABLE ROW</p>
+                <p class="card-subtitle">ESPALDA MEDIA</p>
                 <p class="card-details">3 Series x 30 Segundos</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1566241142559-40e1dab266c6?auto=format&fit=crop&w=600&q=80" alt="Plancha frontal" class="exercise-img">
-                    <p><strong>Movimiento:</strong> En posición de plancha alta, toca alternadamente tu hombro opuesto intentando no girar la cadera.</p>
-                    <p><strong>Para qué sirve:</strong> Desafía el abdomen profundo y fortalece la estabilidad escapular.</p>
+                    <img src="IMG_8992.JPG" alt="Seated Cable Row" class="exercise-img">
+                    <p><strong>Movimiento:</strong> Rema hacia el abdomen manteniendo la espalda recta.</p>
+                    <p><strong>Para qué sirve:</strong> Mejora la postura y fortalece la parte media de la espalda.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">CRUNCH ABDOMINAL CLÁSICO</p>
-                <p class="card-subtitle">RECTO ABDOMINAL</p>
+                <p class="card-title">MACHINE CHEAST PRESS</p>
+                <p class="card-subtitle">PECHO</p>
                 <p class="card-details">3 Series x 15 Repeticiones</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" alt="Crunch abdominal" class="exercise-img">
-                    <p><strong>Movimiento:</strong> Tumbada boca arriba con rodillas flexionadas, eleva los omóplatos despegándolos del suelo.</p>
-                    <p><strong>Para qué sirve:</strong> Contrae de forma aislada la parte superior del abdomen.</p>
+                    <img src="IMG_8993.JPG" alt="Machine Chest Press" class="exercise-img">
+                    <p><strong>Movimiento:</strong> Empuja hacia el frente controlando el peso en la máquina.</p>
+                    <p><strong>Para qué sirve:</strong> Trabaja de forma segura el pectoral.</p>
                 </div>
             </div>
         </div>
 
-        <!-- 3. VUELTA A LA CALMA -->
+        <!-- 3. VUELTA A LA CALMA (SIN IMÁGENES) -->
         <h3 class="section-title">3. Vuelta a la Calma y Estiramientos (7 min)</h3>
 
         <div class="exercise-card" onclick="toggleCard(this)">
@@ -541,9 +512,8 @@
                 <p class="card-subtitle">PECTORAL</p>
                 <p class="card-details">1 Minuto (30s por lado)</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=600&q=80" alt="Estiramiento" class="exercise-img">
                     <p><strong>Movimiento:</strong> Coloca el antebrazo en la pared y gira el torso suavemente hacia el lado contrario.</p>
-                    <p><strong>Para qué sirve:</strong> Alivia la tensión acumulada en el pecho tras las flexiones.</p>
+                    <p><strong>Para qué sirve:</strong> Alivia la tensión acumulada en el pecho.</p>
                 </div>
             </div>
         </div>
@@ -554,7 +524,6 @@
                 <p class="card-subtitle">TREN SUPERIOR</p>
                 <p class="card-details">1 Minuto (30s por brazo)</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80" alt="Estiramiento triceps" class="exercise-img">
                     <p><strong>Movimiento:</strong> Cruza el brazo por delante del pecho o llévalo doblado detrás de la cabeza.</p>
                     <p><strong>Para qué sirve:</strong> Relaja los hombros y la parte posterior de los brazos.</p>
                 </div>
@@ -567,7 +536,6 @@
                 <p class="card-subtitle">COLUMNA</p>
                 <p class="card-details">2 Minutos</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1508215885820-4ff85e5f24d0?auto=format&fit=crop&w=600&q=80" alt="Gato vaca" class="exercise-img">
                     <p><strong>Movimiento:</strong> En cuatro puntos, arquea la espalda hacia arriba (gato) y hunde el pecho suavemente (vaca).</p>
                     <p><strong>Para qué sirve:</strong> Devuelve la movilidad natural a toda la espalda.</p>
                 </div>
@@ -580,7 +548,6 @@
                 <p class="card-subtitle">CIERRE</p>
                 <p class="card-details">3 Minutos</p>
                 <div class="card-description">
-                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="Respiración" class="exercise-img">
                     <p><strong>Movimiento:</strong> Acostada o sentada, inhala profundamente inflando el abdomen y exhala lento.</p>
                     <p><strong>Para qué sirve:</strong> Baja las pulsaciones cardíacas y relaja el sistema nervioso.</p>
                 </div>
