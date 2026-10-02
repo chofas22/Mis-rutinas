@@ -2,21 +2,26 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Progreso - Registro y Gráfica</title>
     <!-- Importamos Chart.js para la gráfica de peso -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             background-color: #050505;
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             justify-content: center;
+            overflow-x: hidden;
         }
 
         .app-container {
@@ -53,9 +58,17 @@
             background-color: #2a2a2a;
             border: 1px solid #444;
             border-radius: 12px;
-            padding: 20px;
+            padding: 15px;
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            width: 100%;
+        }
+
+        /* Contenedor seguro para la gráfica en móvil */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-height: 250px;
         }
 
         label {
@@ -68,6 +81,7 @@
 
         input[type="date"], input[type="number"], input[type="file"] {
             width: 100%;
+            max-width: 100%;
             padding: 12px;
             background-color: #161616;
             border: 1px solid #444;
@@ -75,7 +89,6 @@
             color: #fff;
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 15px;
-            box-sizing: border-box;
         }
 
         button {
@@ -105,6 +118,7 @@
             border-radius: 8px;
             margin-bottom: 10px;
             font-size: 0.85rem;
+            word-break: break-all;
         }
 
         .delete-btn {
@@ -116,6 +130,8 @@
             font-size: 0.75rem;
             cursor: pointer;
             width: auto;
+            flex-shrink: 0;
+            margin-left: 10px;
         }
 
         .delete-btn:hover {
@@ -145,13 +161,15 @@
 
         <div class="header">
             <h1>Seguimiento</h1>
-            <p style="color: #888; font-size: 0.8rem; text-transform: uppercase; margin: 5px 0 0 0;">Peso, Gráfica y Historial</p>
+            <p style="color: #888; font-size: 0.8rem; text-transform: uppercase; margin: 5px 0 0 0;">Peso, Gráfica e Historial</p>
         </div>
 
         <!-- Gráfica de Progreso -->
         <div class="card">
             <h3 style="color: #e87c3e; margin-top: 0; font-size: 1rem; text-transform: uppercase;">Gráfica de Peso (kg)</h3>
-            <canvas id="weightChart"></canvas>
+            <div class="chart-container">
+                <canvas id="weightChart"></canvas>
+            </div>
         </div>
 
         <!-- Formulario de Registro -->
@@ -188,23 +206,15 @@
     </div>
 
     <script>
-        // Estructura de datos unificada por registros
-        // Cada registro contiene: { id, date, weight, photo }
-        let records = JSON.parse(localStorage.getItem('fitness_records')) || [
-            { id: 1, date: '2026-09-01', weight: 66.0, photo: null },
-            { id: 2, date: '2026-09-08', weight: 65.5, photo: null },
-            { id: 3, date: '2026-09-15', weight: 65.0, photo: null }
-        ];
+        // Inicia completamente vacío como lo solicitaste
+        let records = JSON.parse(localStorage.getItem('fitness_records')) || [];
 
-        // Función para renderizar la gráfica y las listas
         function updateUI() {
-            // Ordenar por fecha por seguridad
             records.sort((a, b) => new Date(a.date) - new Date(b.date));
 
             const labels = records.map(r => r.date);
             const weights = records.map(r => r.weight);
 
-            // Actualizar Gráfica
             if (window.myChart) {
                 window.myChart.destroy();
             }
@@ -225,10 +235,11 @@
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { ticks: { color: '#888' }, grid: { color: '#222' } },
-                        y: { ticks: { color: '#888' }, grid: { color: '#222' } }
+                        x: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } },
+                        y: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: '#222' } }
                     }
                 }
             });
@@ -238,7 +249,7 @@
             historyContainer.innerHTML = '';
             
             if(records.length === 0) {
-                historyContainer.innerHTML = '<p style="color: #666; font-size: 0.8rem;">No hay registros guardados.</p>';
+                historyContainer.innerHTML = '<p style="color: #666; font-size: 0.8rem; margin: 0;">No hay registros guardados.</p>';
             } else {
                 records.forEach(r => {
                     const item = document.createElement('div');
@@ -263,11 +274,10 @@
                     galleryContainer.appendChild(img);
                 });
             } else {
-                galleryContainer.innerHTML = '<p style="color: #666; font-size: 0.8rem; grid-column: span 2;">No hay fotos registradas aún.</p>';
+                galleryContainer.innerHTML = '<p style="color: #666; font-size: 0.8rem; grid-column: span 2; margin: 0;">No hay fotos registradas aún.</p>';
             }
         }
 
-        // Guardar un nuevo registro
         function saveRecord() {
             const dateInput = document.getElementById('recordDate').value;
             const weightInput = document.getElementById('recordWeight').value;
@@ -307,7 +317,6 @@
             }
         }
 
-        // Eliminar registro por ID
         function deleteRecord(id) {
             if(confirm('¿Estás segura de eliminar este registro?')) {
                 records = records.filter(r => r.id !== id);
@@ -322,7 +331,6 @@
             document.getElementById('recordPhoto').value = '';
         }
 
-        // Cargar interfaz al abrir la página
         updateUI();
     </script>
 
