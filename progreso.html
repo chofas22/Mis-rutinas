@@ -62,6 +62,7 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             width: 100%;
+            overflow: hidden; /* Evita que cualquier elemento hijo se desborde */
         }
 
         /* Contenedor seguro para la gráfica en móvil */
@@ -89,6 +90,14 @@
             color: #fff;
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 15px;
+        }
+
+        /* Corrección estricta para que la fecha no se salga en móviles (iOS) */
+        input[type="date"] {
+            appearance: none;
+            -webkit-appearance: none;
+            position: relative;
+            box-sizing: border-box;
         }
 
         button {
@@ -206,7 +215,6 @@
     </div>
 
     <script>
-        // Inicia completamente vacío como lo solicitaste
         let records = JSON.parse(localStorage.getItem('fitness_records')) || [];
 
         function updateUI() {
