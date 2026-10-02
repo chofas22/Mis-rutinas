@@ -274,7 +274,7 @@
         }
 
         .timer-status {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #e87c3e;
@@ -649,18 +649,17 @@
                 osc.start();
                 osc.stop(audioCtx.currentTime + duration);
             } catch (e) {
-                console.log("Audio no soportado o bloqueado por el navegador");
+                console.log("Audio no soportado o bloqueado");
             }
         }
 
-        function playBeepShort() { playTone(600, 0.15); } // Tono corto normal
-        function playBeepHigh() { playTone(880, 0.25); }  // Tono agudo de aviso / ronda
+        function playBeepShort() { playTone(600, 0.15); }
+        function playBeepHigh() { playTone(880, 0.25); }
         function playDoubleBeep() { 
             playTone(880, 0.15);
             setTimeout(() => playTone(1200, 0.25), 180);
-        } // Tono doble de éxito / final
+        }
 
-        // Lógica del Temporizador con Preparación (10s), Avisos de Ronda y Sonidos
         let timerInterval = null;
         let isRunning = false;
         let isPaused = false;
@@ -677,26 +676,37 @@
         }
 
         function updateDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            document.getElementById('timerClockDisplay').textContent = 
-                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            const statusEl = document.getElementById('timerStatusText');
+            const clockEl = document.getElementById('timerClockDisplay');
             
             document.getElementById('timerRoundsDisplay').textContent = `Ronda ${currentRound} de ${maxRounds}`;
             
-            const statusEl = document.getElementById('timerStatusText');
             if(currentPhase === 'prep') {
                 statusEl.textContent = "⏳ Preparación";
                 statusEl.style.color = "#ffa726";
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                clockEl.style.fontSize = "2.2rem";
             } else if(currentPhase === 'round_announcement') {
-                statusEl.textContent = `🔥 ¡RONDA ${currentRound}!`;
-                statusEl.style.color = "#ff5722";
-            } else if(currentPhase === 'work') {
-                statusEl.textContent = `🔥 ¡Trabajo (Ronda ${currentRound})!`;
+                statusEl.textContent = ""; // Dejar vacío arriba para que el texto grande mande
                 statusEl.style.color = "#e87c3e";
+                clockEl.textContent = `¡RONDA ${currentRound}!`; // Las letras grandes en lugar del número de segundos
+                clockEl.style.fontSize = "1.8rem"; // Tamaño perfecto para que luzca limpio
+            } else if(currentPhase === 'work') {
+                statusEl.textContent = `🔥 ¡Trabajo!`;
+                statusEl.style.color = "#e87c3e";
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                clockEl.style.fontSize = "2.2rem";
             } else {
                 statusEl.textContent = "💧 Descanso";
                 statusEl.style.color = "#4caf50";
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                clockEl.style.fontSize = "2.2rem";
             }
         }
 
@@ -746,8 +756,7 @@
                 if (isRunning && !isPaused) {
                     if (timeLeft > 0) {
                         timeLeft--;
-                        // Sonido de cuenta regresiva en los últimos 3 segundos de preparación o trabajo/descanso
-                        if (timeLeft <= 3 && timeLeft > 0) {
+                        if (currentPhase !== 'round_announcement' && timeLeft <= 3 && timeLeft > 0) {
                             playBeepShort();
                         }
                         updateDisplay();
@@ -778,7 +787,7 @@
 
         function triggerRoundAnnouncement() {
             currentPhase = 'round_announcement';
-            timeLeft = 2; // Muestra el anuncio de ronda grande por 2 segundos
+            timeLeft = 2; // Dura 2 segundos en pantalla limpia
             playDoubleBeep();
             updateDisplay();
         }
