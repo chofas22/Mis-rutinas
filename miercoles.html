@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miércoles - Lower Body & Glúteos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
+
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .back-btn {
+            display: inline-block;
+            color: #e87c3e;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 5px 0 0 0;
+            color: #e87c3e;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 0.8rem;
+            color: #888;
+            margin: 6px 0 0 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            border-left: 4px solid #e87c3e;
+            padding-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Tarjetas estándar y de fuerza con imagen */
+        .exercise-card {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .exercise-card:hover {
+            border-color: #e87c3e;
+        }
+
+        .exercise-card-strength {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .exercise-card-strength:hover {
+            border-color: #e87c3e;
+        }
+
+        .exercise-img {
+            width: 90px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #e87c3e;
+            flex-shrink: 0;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .card-title {
+            color: #e87c3e;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            text-transform: uppercase;
+        }
+
+        .card-subtitle {
+            font-size: 0.82rem;
+            color: #d1d1d1;
+            margin: 0 0 6px 0;
+            font-weight: 400;
+        }
+
+        .card-details {
+            font-size: 0.73rem;
+            color: #999999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        .card-description {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #383838;
+            font-size: 0.82rem;
+            color: #cccccc;
+            line-height: 1.4;
+        }
+
+        .card-description p {
+            margin: 0 0 8px 0;
+        }
+
+        .card-description p strong {
+            color: #e87c3e;
+        }
+
+        .exercise-card.active .card-description,
+        .exercise-card-strength.active .card-description {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <a href="index.html" class="back-btn">← Volver al Menú</a>
+
+        <div class="header">
+            <h2>MIÉRCOLES</h2>
+            <h1>LOWER BODY</h1>
+            <p>Duración: 45 min • Glúteos y Piernas</p>
+        </div>
+
+        <!-- 1. CALENTAMIENTO -->
+        <h3 class="section-title">1. Calentamiento (6 min)</h3>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">ELEVACIÓN DE RODILLAS</p>
+                <p class="card-subtitle">MARCHA ACTIVA</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Eleva suavemente las rodillas alternando las piernas en el mismo sitio.</p>
+                    <p><strong>Para qué sirve:</strong> Eleva la temperatura corporal y lubrica las rodillas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">CÍRCULOS DE CADERA</p>
+                <p class="card-subtitle">MOVILIDAD COXOFEMORAL</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Realiza círculos amplios con la cadera hacia ambos lados de manera controlada.</p>
+                    <p><strong>Para qué sirve:</strong> Mejora el rango de movimiento en la articulación de la cadera.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">PUENTE DE GLÚTEOS</p>
+                <p class="card-subtitle">ACTIVACIÓN SIN PESO</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Acostada boca arriba con rodillas flexionadas, eleva la cadera contrayendo los glúteos arriba.</p>
+                    <p><strong>Para qué sirve:</strong> Despierta los glúteos y prepara el sistema neuromuscular antes de cargar peso.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">SENTADILLAS LIBRES</p>
+                <p class="card-subtitle">MECÁNICAS DE FLEXIÓN</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Baja la cadera manteniendo la espalda neutra y el talón bien apoyado.</p>
+                    <p><strong>Para qué sirve:</strong> Prepara la flexión de rodilla y cadera para el bloque principal.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">PATADAS TRASERAS</p>
+                <p class="card-subtitle">CONEXIÓN GLÚTEA</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Extiende la pierna hacia atrás de forma controlada sin arquear la zona lumbar.</p>
+                    <p><strong>Para qué sirve:</strong> Conecta el sistema nervioso directamente con los músculos del glúteo.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">DESPLANTES DINÁMICOS CORTOS</p>
+                <p class="card-subtitle">ESTIRAMIENTO ACTIVO</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Da pasos cortos hacia atrás flexionando ambas rodillas suavemente.</p>
+                    <p><strong>Para qué sirve:</strong> Estira los flexores de la cadera y mejora el equilibrio dinámico.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. BLOQUE PRINCIPAL DE FUERZA -->
+        <h3 class="section-title">2. Fuerza y Tonificación (32 min)</h3>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Barbell_Hip_Thrust.jpeg" alt="Barbell Hip Thrust" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">BARBELL HIP THRUST</p>
+                <p class="card-subtitle">Puente de glúteos con barra</p>
+                <p class="card-details">3 Series x 10-12 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Apoya la espalda alta en un banco, coloca la barra sobre la cadera y empuja hacia arriba contrayendo fuerte los glúteos en la cima.</p>
+                    <p><strong>Para qué sirve:</strong> El ejercicio estelar para el desarrollo, volumen y firmeza de los glúteos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Goblet_Squat.jpeg" alt="Goblet Squat" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">GOBLET SQUAT</p>
+                <p class="card-subtitle">Sentadilla con mancuerna al pecho</p>
+                <p class="card-details">3 Series x 10-12 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Sostén una mancuerna verticalmente frente al pecho. Baja la cadera de forma profunda manteniendo el torso erguido.</p>
+                    <p><strong>Para qué sirve:</strong> Tonifica cuádriceps y glúteos protegiendo la columna gracias a la carga frontal.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Romanian_Deadlift.jpeg" alt="Romanian Deadlift" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">ROMANIAN DEADLIFT</p>
+                <p class="card-subtitle">Peso muerto rumano con mancuernas</p>
+                <p class="card-details">3 Series x 10-12 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Con una ligera flexión de rodillas, empuja la cadera hacia atrás sintiendo el estiramiento en los femorales y sube apretando glúteos.</p>
+                    <p><strong>Para qué sirve:</strong> Modela la cadena posterior (femorales y glúteos) y mejora notablemente la postura.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Bulgarian_Split_Squat.jpeg" alt="Bulgarian Split Squat" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">BULGARIAN SPLIT SQUAT</p>
+                <p class="card-subtitle">Desplantes búlgaros</p>
+                <p class="card-details">2 Series x 10 Reps por pierna</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Coloca un empeine apoyado en el banco trasero y baja controladamente con la pierna delantera.</p>
+                    <p><strong>Para qué sirve:</strong> Trabajo unilateral profundo que elimina desequilibrios y esculpe el glúteo mayor y medio.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Seated_Leg_Curl.jpeg" alt="Seated Leg Curl" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">SEATED LEG CURL</p>
+                <p class="card-subtitle">Curl femoral sentado en máquina</p>
+                <p class="card-details">2 Series x 12 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Sentada en la máquina, flexiona las piernas hacia abajo y regresa de forma resistida.</p>
+                    <p><strong>Para qué sirve:</strong> Aísla por completo los músculos isquiotibiales (detrás del muslo).</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Standing_Calf_Raise.jpeg" alt="Standing Calf Raise" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">STANDING CALF RAISE</p>
+                <p class="card-subtitle">Elevación de talones</p>
+                <p class="card-details">2 Series x 15 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Sube sobre la punta de tus pies buscando el punto máximo de contracción y baja estirando el talón.</p>
+                    <p><strong>Para qué sirve:</strong> Da definición, fuerza y soporte estético a las pantorrillas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. ESTIRAMIENTOS Y FLEXIBILIDAD -->
+        <h3 class="section-title">3. Estiramientos y Splits (7 min)</h3>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">FIGURE-4 STRETCH</p>
+                <p class="card-subtitle">Estiramiento de glúteo en cruz</p>
+                <p class="card-details">1 Minuto por pierna</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Cruza un tobillo sobre la rodilla contraria y jala suavemente hacia tu pecho.</p>
+                    <p><strong>Para qué sirve:</strong> Libera la tensión profunda acumulada en los glúteos tras el entrenamiento.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">HAMSTRING STRETCH</p>
+                <p class="card-subtitle">Estiramiento de femorales</p>
+                <p class="card-details">1 Minuto por pierna</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Extiende una pierna al frente y baja el torso con la espalda recta hacia la punta del pie.</p>
+                    <p><strong>Para qué sirve:</strong> Alarga la parte trasera de las piernas mejorando la flexibilidad rumbo a los splits.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">PIGEON POSE</p>
+                <p class="card-subtitle">Postura de la paloma</p>
+                <p class="card-details">1 Minuto por pierna</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Dobla una pierna al frente en el suelo y estira la otra hacia atrás recostando el torso.</p>
+                    <p><strong>Para qué sirve:</strong> Apertura profunda de cadera y relajación de glúteos y flexores.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">CHILD'S POSE</p>
+                <p class="card-subtitle">Postura del niño</p>
+                <p class="card-details">1 Minuto total</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Siéntate sobre tus talones y estira los brazos completamente al frente sobre el suelo.</p>
+                    <p><strong>Para qué sirve:</strong> Descomprime por completo la zona lumbar y relaja toda la columna.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
