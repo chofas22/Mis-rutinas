@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunes - Upper Body & Core</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
+
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            max-width: 450px;
+            width: 100%;
+        }
+
+        /* Botón de Regresar al Menú */
+        .back-btn {
+            display: inline-block;
+            color: #e87c3e;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 5px 0 0 0;
+            color: #e87c3e;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 0.8rem;
+            color: #888;
+            margin: 6px 0 0 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            border-left: 4px solid #e87c3e;
+            padding-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Tarjetas normales (Calentamiento y Estiramientos) */
+        .exercise-card {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        /* Tarjetas de Fuerza (Con espacio para Imágenes de 2 Paneles) */
+        .exercise-card-strength {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .image-placeholder {
+            width: 90px;
+            height: 65px;
+            background-color: #1a1a1a;
+            border: 1px dashed #e87c3e;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e87c3e;
+            font-weight: bold;
+            font-size: 0.7rem;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .card-title {
+            color: #e87c3e;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            text-transform: uppercase;
+        }
+
+        .card-subtitle {
+            font-size: 0.82rem;
+            color: #d1d1d1;
+            margin: 0 0 6px 0;
+            font-weight: 400;
+        }
+
+        .card-details {
+            font-size: 0.73rem;
+            color: #999999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Botón para regresar al menú principal -->
+        <a href="index.html" class="back-btn">← Volver al Menú</a>
+
+        <!-- Encabezado de la Rutina -->
+        <div class="header">
+            <h2>LUNES</h2>
+            <h1>UPPER BODY</h1>
+            <p>Duración: 45 min • Intensidad Controlada</p>
+        </div>
+
+        <!-- 1. CALENTAMIENTO -->
+        <h3 class="section-title">1. Calentamiento (6 min)</h3>
+
+        <div class="exercise-card">
+            <div class="card-content">
+                <p class="card-title">MARCHA EN EL LUGAR</p>
+                <p class="card-subtitle">MOVIMIENTO SUAVE</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="card-content">
+                <p class="card-title">CÍRCULOS DE HOMBROS</p>
+                <p class="card-subtitle">ARTICULACIÓN LIBRE</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="card-content">
+                <p class="card-title">ABRIR Y CERRAR BRAZOS</p>
+                <p class="card-subtitle">ACTIVACIÓN PECTORAL</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="card-content">
+                <p class="card-title">JUNTAR OMÓPLATOS</p>
+                <p class="card-subtitle">RETRACCIÓN ESCAPULAR</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="card-content">
+                <p class="card-title">FLEXIÓN DE CODOS</p>
+                <p class="card-subtitle">MOVILIDAD ARTICULAR</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="card-content">
+                <p class="card-title">REMO SIN PESO</p>
+                <p class="card-subtitle">ACTIVACIÓN DORSAL</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+            </div>
+        </div>
+
+        <!-- 2. BLOQUE PRINCIPAL DE FUERZA -->
+        <h3 class="section-title">2. Fuerza y Tonificación (34 min)</h3>
+
+        <div class="exercise-card-strength">
+            <div class="image-placeholder">2 PANELES</div>
+            <div class="card-content">
+                <p class="card-title">LAT PULLDOWN</p>
+                <p class="card-subtitle">Jalón al pecho controlado</p>
+                <p class="card-details">2 Series x 10-12 Reps</p>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength">
+            <div class="image-placeholder">2 PANELES</div>
+            <div class="card-content">
+                <p class="card-title">MACHINE CHEST PRESS</p>
+                <p class="card-subtitle">Press de pecho en máquina</p>
+                <p class="card-details">2 Series x 10-12 Reps</p>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength">
+            <div class="image-placeholder">2 PANELES</div>
+            <div class="card-content">
+                <p class="card-title">SEATED CABLE ROW</p>
+                <p class="card-subtitle">Remo sentado en polea</p>
+                <p class="card-details">2 Series x 10-12 Reps</p>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength">
+            <div class="image-placeholder">2 PANELES</div>
+            <div class="card-content">
+                <p class="card-title">DUMBBELL SHOULDER PRESS</p>
+                <p class="card-subtitle">Press de hombros con mancuernas</p>
+                <p class="card-details">2 Series x 10 Reps</p>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength">
+            <div class="image-placeholder">2 PANELES</div>
+            <div class="card-content">
+                <p class="card-title">DUMBBELL BICEP CURL</p>
+                <p class="card-subtitle">Curl de bíceps estricto</p>
+                <p class="card-details">1-2 Series x 12 Reps</p>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength">
+            <div class="image-placeholder">2 PANELES</div>
+            <div class="card-content">
+                <p class="card-title">CABLE TRICEP PUSHDOWN</p>
+                <p class="card-subtitle">Extensión de tríceps en polea</p>
+                <p class="card-details">1-2 Series x 12 Reps</p>
+            </div>
+        </div>
+
+        <!-- 3. ESTIRAMIENTOS Y FLEXIBILIDAD -->
+        <h3 class="section-title">3. Estiramientos y Splits (5 min)</h3>
+
+        <div class="exercise-card">
+            <div class="card-content">
+                <p class="card-title">CROSS-BODY SHOULDER STRETCH</p>
+                <p class="card-subtitle">Estiramiento de hombro cruzado</p>
+                <p class="card-details">30 Segundos por brazo</p>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="card-content">
+                <p class="card-title">CHEST OPENER STRETCH</p>
+                <p class="card-subtitle">Apertura de pecho y postura</p>
+                <p class="card-details">1 Minuto total</p>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="card-content">
+                <p class="card-title">UPPER BACK STRETCH</p>
+                <p class="card-subtitle">Estiramiento de espalda alta</p>
+                <p class="card-details">1 Minuto total</p>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="card-content">
+                <p class="card-title">LOW LUNGE HIP FLEXOR STRETCH</p>
+                <p class="card-subtitle">Desplante bajo (Rumbo a los Splits)</p>
+                <p class="card-details">1 Minuto por pierna</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
