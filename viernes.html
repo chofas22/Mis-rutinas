@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viernes - Full Body & Core</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
+
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .back-btn {
+            display: inline-block;
+            color: #e87c3e;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 15px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .header h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 5px 0 0 0;
+            color: #e87c3e;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            font-size: 0.8rem;
+            color: #888;
+            margin: 6px 0 0 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 25px 0 15px 0;
+            border-left: 4px solid #e87c3e;
+            padding-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .exercise-card {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .exercise-card:hover {
+            border-color: #e87c3e;
+        }
+
+        .exercise-card-strength {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .exercise-card-strength:hover {
+            border-color: #e87c3e;
+        }
+
+        .exercise-img {
+            width: 90px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #e87c3e;
+            flex-shrink: 0;
+        }
+
+        .card-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .card-title {
+            color: #e87c3e;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            text-transform: uppercase;
+        }
+
+        .card-subtitle {
+            font-size: 0.82rem;
+            color: #d1d1d1;
+            margin: 0 0 6px 0;
+            font-weight: 400;
+        }
+
+        .card-details {
+            font-size: 0.73rem;
+            color: #999999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        .card-description {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #383838;
+            font-size: 0.82rem;
+            color: #cccccc;
+            line-height: 1.4;
+        }
+
+        .card-description p {
+            margin: 0 0 8px 0;
+        }
+
+        .card-description p strong {
+            color: #e87c3e;
+        }
+
+        .exercise-card.active .card-description,
+        .exercise-card-strength.active .card-description {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <a href="index.html" class="back-btn">← Volver al Menú</a>
+
+        <div class="header">
+            <h2>VIERNES</h2>
+            <h1>FULL BODY</h1>
+            <p>Duración: 45 min • Core Avanzado</p>
+        </div>
+
+        <!-- 1. CALENTAMIENTO -->
+        <h3 class="section-title">1. Calentamiento (6 min)</h3>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">ELEVACIÓN DE RODILLAS</p>
+                <p class="card-subtitle">MARCHA ACTIVA</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Eleva suavemente las rodillas alternando en el sitio.</p>
+                    <p><strong>Para qué sirve:</strong> Activa el sistema cardiovascular y lubrica articulaciones.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">CÍRCULOS DE BRAZOS</p>
+                <p class="card-subtitle">MOVILIDAD DE HOMBROS</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Haz círculos amplios con los brazos hacia adelante y atrás.</p>
+                    <p><strong>Para qué sirve:</strong> Prepara el manguito rotador y la parte superior.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">SENTADILLAS CON GIRO</p>
+                <p class="card-subtitle">FLEXIÓN Y TORSO</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Baja en sentadilla y gira el torso sutilmente al subir.</p>
+                    <p><strong>Para qué sirve:</strong> Activa piernas, glúteos y oblicuos simultáneamente.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">PLANCHA FRONTAL</p>
+                <p class="card-subtitle">FAJA ABDOMINAL</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Apóyate en antebrazos contrayendo abdomen y glúteos en línea recta.</p>
+                    <p><strong>Para qué sirve:</strong> Despierta el abdomen profundo y estabiliza el core.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">BUENOS DÍAS SIN PESO</p>
+                <p class="card-subtitle">BISAGRA DE CADERA</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Manos en la cabeza, empuja la cadera atrás manteniendo la espalda neutra.</p>
+                    <p><strong>Para qué sirve:</strong> Activa la cadena posterior y la zona lumbar.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">PASOS LATERALES DINÁMICOS</p>
+                <p class="card-subtitle">ELEVACIÓN TÉRMICA</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Desplazamientos laterales rápidos y controlados.</p>
+                    <p><strong>Para qué sirve:</strong> Eleva la temperatura corporal al máximo antes del bloque principal.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. FUERZA Y CORE -->
+        <h3 class="section-title">2. Fuerza y Core Global (32 min)</h3>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Dumbbell_Thruster.jpeg" alt="Dumbbell Thruster" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">DUMBBELL THRUSTER</p>
+                <p class="card-subtitle">Sentadilla con press vertical</p>
+                <p class="card-details">3 Series x 10 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Haz una sentadilla profunda con mancuernas a los hombros y explota hacia arriba extendiendo los brazos.</p>
+                    <p><strong>Para qué sirve:</strong> Ejercicio global estrella que dispara el gasto calórico de todo el cuerpo.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Dumbbell_Renegade_Row.jpeg" alt="Dumbbell Renegade Row" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">DUMBBELL RENEGADE ROW</p>
+                <p class="card-subtitle">Remo en plancha con mancuernas</p>
+                <p class="card-details">3 Series x 10 Reps (5 por lado)</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> En posición de plancha alta sobre mancuernas, eleva una pesa hacia la cadera alternando sin girar el torso.</p>
+                    <p><strong>Para qué sirve:</strong> Fortalece espalda alta y brazos exigiendo máxima estabilidad de core.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Dumbbell_Floor_Press.jpeg" alt="Dumbbell Floor Press" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">DUMBBELL FLOOR PRESS</p>
+                <p class="card-subtitle">Press de pecho en suelo</p>
+                <p class="card-details">3 Series x 10 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Acostada en el suelo, empuja las mancuernas hacia arriba extendiendo los brazos y baja hasta que los codos toquen suavemente el piso.</p>
+                    <p><strong>Para qué sirve:</strong> Trabaja pectoral, hombros y tríceps de manera segura protegiendo los hombros.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Alternating_Reverse_Lunges.jpeg" alt="Alternating Reverse Lunges" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">ALTERNATING REVERSE LUNGES</p>
+                <p class="card-subtitle">Desplantes hacia atrás</p>
+                <p class="card-details">2 Series x 12 Reps (6 por pierna)</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Da un paso atrás bajando la rodilla de forma controlada.</p>
+                    <p><strong>Para qué sirve:</strong> Esculpe cuádriceps y glúteos protegiendo las articulaciones de la rodilla.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Bicycle_Crunches.jpeg" alt="Bicycle Crunches" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">BICYCLE CRUNCHES</p>
+                <p class="card-subtitle">Abdominales de bicicleta</p>
+                <p class="card-details">2 Series x 20 Reps (10 por lado)</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Tumbada boca arriba, lleva el codo contrario a la rodilla en movimiento de pedaleo.</p>
+                    <p><strong>Para qué sirve:</strong> Activación total del recto abdominal y los oblicuos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
+            <img src="Russian_Twists.jpeg" alt="Russian Twists" class="exercise-img">
+            <div class="card-content">
+                <p class="card-title">RUSSIAN TWISTS</p>
+                <p class="card-subtitle">Giros rusos con peso</p>
+                <p class="card-details">2 Series x 20 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Con el torso inclinado hacia atrás, gira el peso de lado a lado tocando el suelo.</p>
+                    <p><strong>Para qué sirve:</strong> Define la cintura y potencia la fuerza rotacional del core.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. ESTIRAMIENTOS Y VUELTA A LA CALMA -->
+        <h3 class="section-title">3. Vuelta a la Calma (7 min)</h3>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">FULL BODY OVERHEAD STRETCH</p>
+                <p class="card-subtitle">Estiramiento global de pie</p>
+                <p class="card-details">1 Minuto</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Entrelaza los dedos y estira los brazos hacia el cielo alargando todo el cuerpo.</p>
+                    <p><strong>Para qué sirve:</strong> Libera la tensión acumulada tras los ejercicios compuestos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">CAT-COW STRETCH</p>
+                <p class="card-subtitle">Postura de Gato-Vaca</p>
+                <p class="card-details">1 Minuto</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> En cuatro puntos, arquea y hunde la espalda alternadamente.</p>
+                    <p><strong>Para qué sirve:</strong> Moviliza y relaja toda la columna vertebral.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">HIP FLEXOR & QUAD STRETCH</p>
+                <p class="card-subtitle">Estiramiento de cuádriceps y cadera</p>
+                <p class="card-details">1 Minuto por pierna</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Lleva el talón hacia el glúteo de pie o apoyada en la rodilla.</p>
+                    <p><strong>Para qué sirve:</strong> Alivia la tensión en la parte frontal de los muslos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">CHILD'S POSE</p>
+                <p class="card-subtitle">Postura del niño extendida</p>
+                <p class="card-details">2 Minutos</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Siéntate sobre los talones estirando los brazos al frente sobre el piso.</p>
+                    <p><strong>Para qué sirve:</strong> Relaja por completo la espalda, hombros y zona lumbar, cerrando la semana.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>
