@@ -49,16 +49,6 @@
             text-transform: uppercase;
         }
 
-        .section-title {
-            color: #ffffff;
-            font-size: 1rem;
-            font-weight: 700;
-            margin: 25px 0 15px 0;
-            border-left: 4px solid #e87c3e;
-            padding-left: 10px;
-            text-transform: uppercase;
-        }
-
         .card {
             background-color: #2a2a2a;
             border: 1px solid #444;
@@ -105,6 +95,33 @@
             background-color: #ff8c4a;
         }
 
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #161616;
+            border: 1px solid #333;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .delete-btn {
+            background-color: #a83232;
+            color: #fff;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            width: auto;
+        }
+
+        .delete-btn:hover {
+            background-color: #c94040;
+        }
+
         .gallery {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -128,7 +145,7 @@
 
         <div class="header">
             <h1>Seguimiento</h1>
-            <p style="color: #888; font-size: 0.8rem; text-transform: uppercase; margin: 5px 0 0 0;">Peso y Fotos de Avance</p>
+            <p style="color: #888; font-size: 0.8rem; text-transform: uppercase; margin: 5px 0 0 0;">Peso, Gráfica y Historial</p>
         </div>
 
         <!-- Gráfica de Progreso -->
@@ -148,56 +165,109 @@
             <input type="number" id="recordWeight" step="0.1" placeholder="Ej. 65.5">
 
             <label>Foto de Avance (Usa tu cámara)</label>
-            <!-- accept="image/*" y capture="environment" abren la cámara trasera directo en celulares -->
             <input type="file" id="recordPhoto" accept="image/*" capture="environment">
 
             <button onclick="saveRecord()">Guardar Registro</button>
         </div>
 
+        <!-- Historial y Gestión de Registros -->
+        <div class="card">
+            <h3 style="color: #e87c3e; margin-top: 0; font-size: 1rem; text-transform: uppercase;">Historial de Registros</h3>
+            <div id="historyList">
+                <!-- Se llenará dinámicamente -->
+            </div>
+        </div>
+
         <!-- Galería de Fotos Guardadas -->
         <div class="card">
-            <h3 style="color: #e87c3e; margin-top: 0; font-size: 1rem; text-transform: uppercase;">Mis Fotos</h3>
+            <h3 style="color: #e87c3e; margin-top: 0; font-size: 1rem; text-transform: uppercase;">Mis Fotos de Avance</h3>
             <div id="photoGallery" class="gallery">
-                <!-- Las fotos subidas aparecerán aquí dinámicamente -->
+                <!-- Se llenará dinámicamente -->
             </div>
         </div>
     </div>
 
     <script>
-        // Inicializar datos guardados en el navegador (LocalStorage)
-        let progressData = JSON.parse(localStorage.getItem('fitness_progress')) || {
-            dates: ['Sem 1', 'Sem 2', 'Sem 3'],
-            weights: [66.0, 65.5, 65.0],
-            photos: []
-        };
+        // Estructura de datos unificada por registros
+        // Cada registro contiene: { id, date, weight, photo }
+        let records = JSON.parse(localStorage.getItem('fitness_records')) || [
+            { id: 1, date: '2026-09-01', weight: 66.0, photo: null },
+            { id: 2, date: '2026-09-08', weight: 65.5, photo: null },
+            { id: 3, date: '2026-09-15', weight: 65.0, photo: null }
+        ];
 
-        // Configurar la gráfica con Chart.js
-        const ctx = document.getElementById('weightChart').getContext('2d');
-        const weightChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: progressData.dates,
-                datasets: [{
-                    label: 'Peso (kg)',
-                    data: progressData.weights,
-                    borderColor: '#e87c3e',
-                    backgroundColor: 'rgba(232, 124, 62, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.3
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: { ticks: { color: '#888' }, grid: { color: '#222' } },
-                    y: { ticks: { color: '#888' }, grid: { color: '#222' } }
-                }
+        // Función para renderizar la gráfica y las listas
+        function updateUI() {
+            // Ordenar por fecha por seguridad
+            records.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            const labels = records.map(r => r.date);
+            const weights = records.map(r => r.weight);
+
+            // Actualizar Gráfica
+            if (window.myChart) {
+                window.myChart.destroy();
             }
-        });
+            const ctx = document.getElementById('weightChart').getContext('2d');
+            window.myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Peso (kg)',
+                        data: weights,
+                        borderColor: '#e87c3e',
+                        backgroundColor: 'rgba(232, 124, 62, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { ticks: { color: '#888' }, grid: { color: '#222' } },
+                        y: { ticks: { color: '#888' }, grid: { color: '#222' } }
+                    }
+                }
+            });
 
-        // Función para guardar registros
+            // Actualizar Historial en pantalla
+            const historyContainer = document.getElementById('historyList');
+            historyContainer.innerHTML = '';
+            
+            if(records.length === 0) {
+                historyContainer.innerHTML = '<p style="color: #666; font-size: 0.8rem;">No hay registros guardados.</p>';
+            } else {
+                records.forEach(r => {
+                    const item = document.createElement('div');
+                    item.className = 'history-item';
+                    item.innerHTML = `
+                        <span><strong>${r.date}</strong>: ${r.weight} kg</span>
+                        <button class="delete-btn" onclick="deleteRecord(${r.id})">Eliminar</button>
+                    `;
+                    historyContainer.appendChild(item);
+                });
+            }
+
+            // Actualizar Galería de Fotos
+            const galleryContainer = document.getElementById('photoGallery');
+            galleryContainer.innerHTML = '';
+            const photosWithData = records.filter(r => r.photo != null);
+
+            if(photosWithData.length > 0) {
+                photosWithData.forEach(r => {
+                    const img = document.createElement('img');
+                    img.src = r.photo;
+                    galleryContainer.appendChild(img);
+                });
+            } else {
+                galleryContainer.innerHTML = '<p style="color: #666; font-size: 0.8rem; grid-column: span 2;">No hay fotos registradas aún.</p>';
+            }
+        }
+
+        // Guardar un nuevo registro
         function saveRecord() {
             const dateInput = document.getElementById('recordDate').value;
             const weightInput = document.getElementById('recordWeight').value;
@@ -208,36 +278,52 @@
                 return;
             }
 
-            // Actualizar datos de la gráfica
-            progressData.dates.push(dateInput);
-            progressData.weights.push(parseFloat(weightInput));
+            const newId = Date.now();
 
-            // Manejar la foto si se seleccionó
             if(photoInput) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    progressData.photos.push(e.target.result);
-                    localStorage.setItem('fitness_progress', JSON.stringify(progressData));
-                    location.reload(); // Recargar para actualizar vista
+                    records.push({
+                        id: newId,
+                        date: dateInput,
+                        weight: parseFloat(weightInput),
+                        photo: e.target.result
+                    });
+                    localStorage.setItem('fitness_records', JSON.stringify(records));
+                    updateUI();
+                    clearForm();
                 };
                 reader.readAsDataURL(photoInput);
             } else {
-                localStorage.setItem('fitness_progress', JSON.stringify(progressData));
-                location.reload();
+                records.push({
+                    id: newId,
+                    date: dateInput,
+                    weight: parseFloat(weightInput),
+                    photo: null
+                });
+                localStorage.setItem('fitness_records', JSON.stringify(records));
+                updateUI();
+                clearForm();
             }
         }
 
-        // Cargar galería guardada al abrir
-        const galleryContainer = document.getElementById('photoGallery');
-        if(progressData.photos && progressData.photos.length > 0) {
-            progressData.photos.forEach(photoSrc => {
-                const img = document.createElement('img');
-                img.src = photoSrc;
-                galleryContainer.appendChild(img);
-            });
-        } else {
-            galleryContainer.innerHTML = '<p style="color: #666; font-size: 0.8rem; grid-column: span 2;">No hay fotos registradas aún.</p>';
+        // Eliminar registro por ID
+        function deleteRecord(id) {
+            if(confirm('¿Estás segura de eliminar este registro?')) {
+                records = records.filter(r => r.id !== id);
+                localStorage.setItem('fitness_records', JSON.stringify(records));
+                updateUI();
+            }
         }
+
+        function clearForm() {
+            document.getElementById('recordDate').value = '';
+            document.getElementById('recordWeight').value = '';
+            document.getElementById('recordPhoto').value = '';
+        }
+
+        // Cargar interfaz al abrir la página
+        updateUI();
     </script>
 
 </body>
