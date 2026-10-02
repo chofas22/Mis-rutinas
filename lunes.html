@@ -22,7 +22,6 @@
             width: 100%;
         }
 
-        /* Botón de Regresar al Menú */
         .back-btn {
             display: inline-block;
             color: #e87c3e;
@@ -79,7 +78,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Tarjetas normales (Calentamiento y Estiramientos) */
+        /* Tarjetas interactivas desplegables */
         .exercise-card {
             background-color: #2a2a2a;
             border: 1px solid #444;
@@ -87,9 +86,14 @@
             padding: 15px 20px;
             margin-bottom: 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: border-color 0.2s ease;
         }
 
-        /* Tarjetas de Fuerza (Con espacio para Imágenes de 2 Paneles) */
+        .exercise-card:hover {
+            border-color: #e87c3e;
+        }
+
         .exercise-card-strength {
             background-color: #2a2a2a;
             border: 1px solid #444;
@@ -100,6 +104,12 @@
             align-items: center;
             gap: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .exercise-card-strength:hover {
+            border-color: #e87c3e;
         }
 
         .image-placeholder {
@@ -147,15 +157,38 @@
             letter-spacing: 0.5px;
             margin: 0;
         }
+
+        /* Contenido oculto que se despliega al hacer clic */
+        .card-description {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #383838;
+            font-size: 0.82rem;
+            color: #cccccc;
+            line-height: 1.4;
+        }
+
+        .card-description p {
+            margin: 0 0 8px 0;
+        }
+
+        .card-description p strong {
+            color: #e87c3e;
+        }
+
+        /* Clase activa para desplegar */
+        .exercise-card.active .card-description,
+        .exercise-card-strength.active .card-description {
+            display: block;
+        }
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        <!-- Botón para regresar al menú principal -->
         <a href="index.html" class="back-btn">← Volver al Menú</a>
 
-        <!-- Encabezado de la Rutina -->
         <div class="header">
             <h2>LUNES</h2>
             <h1>UPPER BODY</h1>
@@ -165,147 +198,218 @@
         <!-- 1. CALENTAMIENTO -->
         <h3 class="section-title">1. Calentamiento (6 min)</h3>
 
-        <div class="exercise-card">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">MARCHA EN EL LUGAR</p>
                 <p class="card-subtitle">MOVIMIENTO SUAVE</p>
-                <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <p class="card-details">1 MINUTO X 1 SERIE <span>(Toca para ver detalle)</span></p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Eleva suavemente las rodillas alternando las piernas en el mismo sitio.</p>
+                    <p><strong>Para qué sirve:</strong> Eleva la temperatura corporal y las pulsaciones de forma segura, preparando el corazón para el esfuerzo.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">CÍRCULOS DE HOMBROS</p>
                 <p class="card-subtitle">ARTICULACIÓN LIBRE</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Traza círculos amplios y lentos con los hombros, primero hacia atrás y luego hacia adelante.</p>
+                    <p><strong>Para qué sirve:</strong> Lubrica la articulación del hombro (el manguito rotador), previniendo lesiones al cargar peso.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">ABRIR Y CERRAR BRAZOS</p>
                 <p class="card-subtitle">ACTIVACIÓN PECTORAL</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Abre los brazos en cruz y luego ciérralos al frente alternando qué brazo pasa por arriba.</p>
+                    <p><strong>Para qué sirve:</strong> Activa dinámicamente los músculos del pecho y de la parte alta de la espalda.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">JUNTAR OMÓPLATOS</p>
                 <p class="card-subtitle">RETRACCIÓN ESCAPULAR</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Con los codos flexionados, empuja los hombros hacia atrás imaginando que quieres sostener un lápiz entre tus omóplatos.</p>
+                    <p><strong>Para qué sirve:</strong> Despierta los músculos estabilizadores de la postura, clave para no encorvarse durante el día.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">FLEXIÓN DE CODOS</p>
                 <p class="card-subtitle">MOVILIDAD ARTICULAR</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Simula hacer un curl de bíceps pero sin peso, estirando y flexionando completamente los codos.</p>
+                    <p><strong>Para qué sirve:</strong> Estimula el líquido sinovial en los codos para que el movimiento sea fluido y sin dolor.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">REMO SIN PESO</p>
                 <p class="card-subtitle">ACTIVACIÓN DORSAL</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Extiende los brazos al frente y jala hacia tu abdomen apretando la espalda.</p>
+                    <p><strong>Para qué sirve:</strong> Conecta tu sistema nervioso con los músculos de la espalda antes de ir a la máquina.</p>
+                </div>
             </div>
         </div>
 
         <!-- 2. BLOQUE PRINCIPAL DE FUERZA -->
         <h3 class="section-title">2. Fuerza y Tonificación (34 min)</h3>
 
-        <div class="exercise-card-strength">
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
             <div class="image-placeholder">2 PANELES</div>
             <div class="card-content">
                 <p class="card-title">LAT PULLDOWN</p>
                 <p class="card-subtitle">Jalón al pecho controlado</p>
                 <p class="card-details">2 Series x 10-12 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Sentada frente a la polea, agarra la barra más ancho que tus hombros. Mantén la espalda recta y lleva la barra hacia la parte alta de tu pecho tirando con los codos.</p>
+                    <p><strong>Para qué sirve:</strong> Trabaja los dorsales (espalda ancha), estilizando la postura y dando una ilusión óptica de cintura más estrecha.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength">
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
             <div class="image-placeholder">2 PANELES</div>
             <div class="card-content">
                 <p class="card-title">MACHINE CHEST PRESS</p>
                 <p class="card-subtitle">Press de pecho en máquina</p>
                 <p class="card-details">2 Series x 10-12 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Siéntate con la espalda firme. Empuja los agarres al frente de manera fluida y regresa lentamente resistiendo el peso.</p>
+                    <p><strong>Para qué sirve:</strong> Tonifica el pectoral y la parte frontal del hombro, brindando firmeza a la zona del escote.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength">
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
             <div class="image-placeholder">2 PANELES</div>
             <div class="card-content">
                 <p class="card-title">SEATED CABLE ROW</p>
                 <p class="card-subtitle">Remo sentado en polea</p>
                 <p class="card-details">2 Series x 10-12 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Con la espalda neutra y abdomen firme, lleva los agarres hacia tu ombligo sin balancear el tronco.</p>
+                    <p><strong>Para qué sirve:</strong> Esculpe el centro de la espalda y elimina la flacidez en la zona superior de la espalda.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength">
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
             <div class="image-placeholder">2 PANELES</div>
             <div class="card-content">
                 <p class="card-title">DUMBBELL SHOULDER PRESS</p>
                 <p class="card-subtitle">Press de hombros con mancuernas</p>
                 <p class="card-details">2 Series x 10 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Sostén mancuernas a la altura de los hombros. Sube por encima de la cabeza y baja con control sin arquear la espalda baja.</p>
+                    <p><strong>Para qué sirve:</strong> Da una definición fina y elegante a los hombros, logrando brazos torneados sin volumen excesivo.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength">
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
             <div class="image-placeholder">2 PANELES</div>
             <div class="card-content">
                 <p class="card-title">DUMBBELL BICEP CURL</p>
                 <p class="card-subtitle">Curl de bíceps estricto</p>
                 <p class="card-details">1-2 Series x 12 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Flexiona los codos subiendo las mancuernas manteniendo los codos fijos pegados a las costillas.</p>
+                    <p><strong>Para qué sirve:</strong> Tonifica la parte frontal del brazo garantizando firmeza muscular.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength">
+        <div class="exercise-card-strength" onclick="toggleCard(this)">
             <div class="image-placeholder">2 PANELES</div>
             <div class="card-content">
                 <p class="card-title">CABLE TRICEP PUSHDOWN</p>
                 <p class="card-subtitle">Extensión de tríceps en polea</p>
                 <p class="card-details">1-2 Series x 12 Reps</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Frente a la polea alta, extiende los codos empujando el cable hacia abajo y regresa despacio.</p>
+                    <p><strong>Para qué sirve:</strong> Es el ejercicio clave para tensar la parte posterior del brazo y evitar la piel flácida.</p>
+                </div>
             </div>
         </div>
 
         <!-- 3. ESTIRAMIENTOS Y FLEXIBILIDAD -->
         <h3 class="section-title">3. Estiramientos y Splits (5 min)</h3>
 
-        <div class="exercise-card">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">CROSS-BODY SHOULDER STRETCH</p>
                 <p class="card-subtitle">Estiramiento de hombro cruzado</p>
                 <p class="card-details">30 Segundos por brazo</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Pasa un brazo estirado por delante de tu pecho y usa el otro para jalarlo suavemente hacia ti.</p>
+                    <p><strong>Para qué sirve:</strong> Libera la tensión en la cápsula del hombro después de los empujes.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">CHEST OPENER STRETCH</p>
                 <p class="card-subtitle">Apertura de pecho y postura</p>
                 <p class="card-details">1 Minuto total</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Entrelaza las manos detrás de tu espalda y levántalas suavemente abriendo el pecho sin arquear la espalda baja.</p>
+                    <p><strong>Para qué sirve:</strong> Contrarresta la postura encorvada por estar sentada o frente a la computadora.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">UPPER BACK STRETCH</p>
                 <p class="card-subtitle">Estiramiento de espalda alta</p>
                 <p class="card-details">1 Minuto total</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Entrelaza los dedos al frente, estira los brazos y redondea suavemente la parte alta de tu espalda.</p>
+                    <p><strong>Para qué sirve:</strong> Descomprime los omóplatos y relaja el trapecio.</p>
+                </div>
             </div>
         </div>
 
-        <div class="exercise-card">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">LOW LUNGE HIP FLEXOR STRETCH</p>
                 <p class="card-subtitle">Desplante bajo (Rumbo a los Splits)</p>
                 <p class="card-details">1 Minuto por pierna</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Apoya una rodilla en el suelo y empuja la cadera hacia adelante manteniendo el torso completamente recto.</p>
+                    <p><strong>Para qué sirve:</strong> Estira profundamente los flexores de la cadera (psoas) para mejorar la flexibilidad rumbo a los splits.</p>
+                </div>
             </div>
         </div>
 
     </div>
+
+    <!-- Script JavaScript para desplegar las descripciones al tocar -->
+    <script>
+        function toggleCard(card) {
+            card.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
