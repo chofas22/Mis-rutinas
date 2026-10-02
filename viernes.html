@@ -93,33 +93,6 @@
             border-color: #e87c3e;
         }
 
-        .exercise-card-strength {
-            background-color: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            cursor: pointer;
-            transition: border-color 0.2s ease;
-        }
-
-        .exercise-card-strength:hover {
-            border-color: #e87c3e;
-        }
-
-        .exercise-img {
-            width: 90px;
-            height: 65px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #e87c3e;
-            flex-shrink: 0;
-        }
-
         .card-content {
             display: flex;
             flex-direction: column;
@@ -150,6 +123,19 @@
             margin: 0;
         }
 
+        /* Imagen a tamaño completo sin recortes al revelar la tarjeta */
+        .exercise-img {
+            width: 100%;
+            height: auto;
+            max-height: 240px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #111;
+            border: 1px solid #444;
+            display: block;
+        }
+
         .card-description {
             display: none;
             margin-top: 12px;
@@ -168,9 +154,190 @@
             color: #e87c3e;
         }
 
-        .exercise-card.active .card-description,
-        .exercise-card-strength.active .card-description {
+        .exercise-card.active .card-description {
             display: block;
+        }
+
+        /* Estilos del Temporizador Flotante Avanzado */
+        #timer-bubble {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #e87c3e;
+            color: #050505;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(232, 124, 62, 0.4);
+            cursor: pointer;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+        #timer-bubble:hover {
+            transform: scale(1.08);
+        }
+        #timer-bubble svg {
+            width: 26px;
+            height: 26px;
+            fill: #050505;
+        }
+
+        #timer-modal {
+            position: fixed;
+            bottom: 95px;
+            right: 20px;
+            max-width: 360px;
+            width: calc(100% - 40px);
+            background-color: #1a1a1a;
+            border: 1px solid #e87c3e;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            z-index: 10000;
+            display: none;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        .timer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+        .timer-header h3 {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #e87c3e;
+            text-transform: uppercase;
+        }
+        .close-timer {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            width: auto;
+        }
+        .close-timer:hover { color: #fff; }
+
+        .timer-inputs-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .timer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #111;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .timer-row label {
+            font-size: 0.75rem;
+            color: #ccc;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .timer-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .timer-row input, .timer-row select {
+            background-color: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .timer-row input {
+            width: 55px;
+            padding: 6px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .timer-row select {
+            padding: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .timer-display {
+            text-align: center;
+            background-color: #111;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        .timer-status {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #e87c3e;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        .timer-clock {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+        }
+        .timer-rounds-info {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        .timer-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .timer-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .timer-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        .btn-main {
+            background-color: #e87c3e;
+            color: #050505;
+            flex: 1;
+        }
+        .btn-main:hover { background-color: #ff8c4a; }
+        .btn-reset-icon {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            color: #fff;
+            width: 48px;
+            flex-shrink: 0;
+            border-radius: 8px;
+        }
+        .btn-reset-icon:hover {
+            background-color: #383838;
+            border-color: #e87c3e;
         }
     </style>
 </head>
@@ -263,78 +430,78 @@
         <!-- 2. FUERZA Y CORE -->
         <h3 class="section-title">2. Fuerza y Core Global (32 min)</h3>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Dumbbell_Thruster.jpeg" alt="Dumbbell Thruster" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">DUMBBELL THRUSTER</p>
                 <p class="card-subtitle">Sentadilla con press vertical</p>
                 <p class="card-details">3 Series x 10 Reps</p>
                 <div class="card-description">
+                    <img src="Dumbbell_Thruster.jpeg" alt="Dumbbell Thruster" class="exercise-img">
                     <p><strong>Movimiento:</strong> Haz una sentadilla profunda con mancuernas a los hombros y explota hacia arriba extendiendo los brazos.</p>
                     <p><strong>Para qué sirve:</strong> Ejercicio global estrella que dispara el gasto calórico de todo el cuerpo.</p>
                 </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Dumbbell_Renegade_Row.jpeg" alt="Dumbbell Renegade Row" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">DUMBBELL RENEGADE ROW</p>
                 <p class="card-subtitle">Remo en plancha con mancuernas</p>
                 <p class="card-details">3 Series x 10 Reps (5 por lado)</p>
                 <div class="card-description">
+                    <img src="Dumbbell_Renegade_Row.jpeg" alt="Dumbbell Renegade Row" class="exercise-img">
                     <p><strong>Movimiento:</strong> En posición de plancha alta sobre mancuernas, eleva una pesa hacia la cadera alternando sin girar el torso.</p>
                     <p><strong>Para qué sirve:</strong> Fortalece espalda alta y brazos exigiendo máxima estabilidad de core.</p>
                 </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Dumbbell_Floor_Press.jpeg" alt="Dumbbell Floor Press" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">DUMBBELL FLOOR PRESS</p>
                 <p class="card-subtitle">Press de pecho en suelo</p>
                 <p class="card-details">3 Series x 10 Reps</p>
                 <div class="card-description">
+                    <img src="Dumbbell_Floor_Press.jpeg" alt="Dumbbell Floor Press" class="exercise-img">
                     <p><strong>Movimiento:</strong> Acostada en el suelo, empuja las mancuernas hacia arriba extendiendo los brazos y baja hasta que los codos toquen suavemente el piso.</p>
                     <p><strong>Para qué sirve:</strong> Trabaja pectoral, hombros y tríceps de manera segura protegiendo los hombros.</p>
                 </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Alternating_Reverse_Lunges.jpeg" alt="Alternating Reverse Lunges" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">ALTERNATING REVERSE LUNGES</p>
                 <p class="card-subtitle">Desplantes hacia atrás</p>
                 <p class="card-details">2 Series x 12 Reps (6 por pierna)</p>
                 <div class="card-description">
+                    <img src="Alternating_Reverse_Lunges.jpeg" alt="Alternating Reverse Lunges" class="exercise-img">
                     <p><strong>Movimiento:</strong> Da un paso atrás bajando la rodilla de forma controlada.</p>
                     <p><strong>Para qué sirve:</strong> Esculpe cuádriceps y glúteos protegiendo las articulaciones de la rodilla.</p>
                 </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Bicycle_Crunches.jpeg" alt="Bicycle Crunches" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">BICYCLE CRUNCHES</p>
                 <p class="card-subtitle">Abdominales de bicicleta</p>
                 <p class="card-details">2 Series x 20 Reps (10 por lado)</p>
                 <div class="card-description">
+                    <img src="Bicycle_Crunches.jpeg" alt="Bicycle Crunches" class="exercise-img">
                     <p><strong>Movimiento:</strong> Tumbada boca arriba, lleva el codo contrario a la rodilla en movimiento de pedaleo.</p>
                     <p><strong>Para qué sirve:</strong> Activación total del recto abdominal y los oblicuos.</p>
                 </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Russian_Twists.jpeg" alt="Russian Twists" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">RUSSIAN TWISTS</p>
                 <p class="card-subtitle">Giros rusos con peso</p>
                 <p class="card-details">2 Series x 20 Reps</p>
                 <div class="card-description">
+                    <img src="Russian_Twists.jpeg" alt="Russian Twists" class="exercise-img">
                     <p><strong>Movimiento:</strong> Con el torso inclinado hacia atrás, gira el peso de lado a lado tocando el suelo.</p>
                     <p><strong>Para qué sirve:</strong> Define la cintura y potencia la fuerza rotacional del core.</p>
                 </div>
@@ -394,9 +561,283 @@
 
     </div>
 
+    <!-- Burbuja Flotante con Icono SVG Vectorial -->
+    <div id="timer-bubble" onclick="toggleTimerModal()" title="Abrir Temporizador">
+        <svg viewBox="0 0 24 24">
+            <path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+        </svg>
+    </div>
+
+    <!-- Widget Desplegable del Temporizador -->
+    <div id="timer-modal">
+        <div class="timer-header">
+            <h3>Temporizador HIIT</h3>
+            <button class="close-timer" onclick="toggleTimerModal()">✕</button>
+        </div>
+
+        <div class="timer-inputs-grid" id="timerConfigSection">
+            <div class="timer-row">
+                <label>Trabajo</label>
+                <div class="timer-input-wrapper">
+                    <input type="number" id="workTime" value="45" min="1">
+                    <select id="workUnit">
+                        <option value="sec" selected>seg</option>
+                        <option value="min">min</option>
+                    </select>
+                </div>
+            </div>
+            <div class="timer-row">
+                <label>Descanso</label>
+                <div class="timer-input-wrapper">
+                    <input type="number" id="restTime" value="15" min="0">
+                    <select id="restUnit">
+                        <option value="sec" selected>seg</option>
+                        <option value="min">min</option>
+                    </select>
+                </div>
+            </div>
+            <div class="timer-row">
+                <label>Rondas</label>
+                <div class="timer-input-wrapper">
+                    <input type="number" id="totalRounds" value="3" min="1" style="width: 85px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="timer-display">
+            <div class="timer-status" id="timerStatusText">Listo para empezar</div>
+            <div class="timer-clock" id="timerClockDisplay">00:45</div>
+            <div class="timer-rounds-info" id="timerRoundsDisplay">Ronda 1 de 3</div>
+        </div>
+
+        <div class="timer-actions">
+            <button class="timer-btn btn-main" id="mainActionBtn" onclick="startPauseTimer()" title="Iniciar / Pausar">
+                <svg id="mainBtnIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button class="timer-btn btn-reset-icon" onclick="resetTimer()" title="Reiniciar">
+                <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+            </button>
+        </div>
+    </div>
+
     <script>
         function toggleCard(card) {
             card.classList.toggle('active');
+        }
+
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playTone(frequency, duration, type = 'sine') {
+            try {
+                initAudio();
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = type;
+                osc.frequency.value = frequency;
+                
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.log("Audio no soportado o bloqueado");
+            }
+        }
+
+        function playBeepShort() { playTone(600, 0.15); }
+        function playBeepHigh() { playTone(880, 0.25); }
+        function playDoubleBeep() { 
+            playTone(880, 0.15);
+            setTimeout(() => playTone(1200, 0.25), 180);
+        }
+
+        let timerInterval = null;
+        let isRunning = false;
+        let isPaused = false;
+        let currentPhase = 'prep'; 
+        let timeLeft = 10;
+        let currentRound = 1;
+        let maxRounds = 3;
+        let workDuration = 45;
+        let restDuration = 15;
+
+        const playSvgHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+        const pauseSvgHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+        function toggleTimerModal() {
+            const modal = document.getElementById('timer-modal');
+            modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function updateDisplay() {
+            const statusEl = document.getElementById('timerStatusText');
+            const clockEl = document.getElementById('timerClockDisplay');
+            
+            document.getElementById('timerRoundsDisplay').textContent = `Ronda ${currentRound} de ${maxRounds}`;
+            
+            if(currentPhase === 'prep') {
+                statusEl.textContent = "⏳ Preparación";
+                statusEl.style.color = "#ffa726";
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                clockEl.style.fontSize = "2.2rem";
+            } else if(currentPhase === 'round_announcement') {
+                statusEl.textContent = ""; 
+                statusEl.style.color = "#e87c3e";
+                clockEl.textContent = `¡RONDA ${currentRound}!`; 
+                clockEl.style.fontSize = "1.8rem"; 
+            } else if(currentPhase === 'work') {
+                statusEl.textContent = `🔥 ¡Trabajo!`;
+                statusEl.style.color = "#e87c3e";
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                clockEl.style.fontSize = "2.2rem";
+            } else {
+                statusEl.textContent = "💧 Descanso";
+                statusEl.style.color = "#4caf50";
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                clockEl.style.fontSize = "2.2rem";
+            }
+        }
+
+        function getTimeInSeconds(inputId, unitId) {
+            const val = parseInt(document.getElementById(inputId).value) || 0;
+            const unit = document.getElementById(unitId).value;
+            return (unit === 'min') ? val * 60 : val;
+        }
+
+        function startPauseTimer() {
+            const mainBtnIcon = document.getElementById('mainBtnIcon');
+
+            if (!isRunning && !isPaused) {
+                workDuration = getTimeInSeconds('workTime', 'workUnit');
+                restDuration = getTimeInSeconds('restTime', 'restUnit');
+                maxRounds = parseInt(document.getElementById('totalRounds').value) || 3;
+                
+                if(workDuration <= 0) {
+                    alert('Por favor ingresa un tiempo de trabajo válido.');
+                    return;
+                }
+
+                currentPhase = 'prep';
+                timeLeft = 10;
+                currentRound = 1;
+                
+                document.getElementById('timerConfigSection').style.display = 'none';
+                mainBtnIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + pauseSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+                
+                isRunning = true;
+                isPaused = false;
+                playBeepHigh();
+            } else if (isRunning && !isPaused) {
+                isPaused = true;
+                isRunning = false;
+                const currentIcon = document.getElementById('mainBtnIcon');
+                currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+            } else if (isPaused) {
+                isPaused = false;
+                isRunning = true;
+                const currentIcon = document.getElementById('mainBtnIcon');
+                currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + pauseSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+            }
+
+            updateDisplay();
+            if(timerInterval) clearInterval(timerInterval);
+            
+            timerInterval = setInterval(() => {
+                if (isRunning && !isPaused) {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        if (currentPhase !== 'round_announcement' && timeLeft <= 3 && timeLeft > 0) {
+                            playBeepShort();
+                        }
+                        updateDisplay();
+                    } else {
+                        if (currentPhase === 'prep') {
+                            triggerRoundAnnouncement();
+                        } else if (currentPhase === 'round_announcement') {
+                            currentPhase = 'work';
+                            timeLeft = workDuration;
+                            playBeepHigh();
+                            updateDisplay();
+                        } else if (currentPhase === 'work') {
+                            if (restDuration > 0) {
+                                currentPhase = 'rest';
+                                timeLeft = restDuration;
+                                playBeepShort();
+                                updateDisplay();
+                            } else {
+                                handleNextRoundProgression();
+                            }
+                        } else if (currentPhase === 'rest') {
+                            handleNextRoundProgression();
+                        }
+                    }
+                }
+            }, 1000);
+        }
+
+        function triggerRoundAnnouncement() {
+            currentPhase = 'round_announcement';
+            timeLeft = 2; 
+            playDoubleBeep();
+            updateDisplay();
+        }
+
+        function handleNextRoundProgression() {
+            if (currentRound < maxRounds) {
+                currentRound++;
+                triggerRoundAnnouncement();
+            } else {
+                clearInterval(timerInterval);
+                isRunning = false;
+                isPaused = false;
+                playDoubleBeep();
+                document.getElementById('timerStatusText').textContent = "¡Completado! 🎉";
+                document.getElementById('timerClockDisplay').textContent = "00:00";
+                
+                const currentIcon = document.getElementById('mainBtnIcon');
+                currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+                
+                document.getElementById('timerConfigSection').style.display = 'flex';
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            isPaused = false;
+            
+            workDuration = getTimeInSeconds('workTime', 'workUnit');
+            timeLeft = 10;
+            currentPhase = 'prep';
+            currentRound = 1;
+
+            document.getElementById('timerConfigSection').style.display = 'flex';
+            
+            const currentIcon = document.getElementById('mainBtnIcon');
+            currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+            
+            document.getElementById('timerStatusText').textContent = "Listo para empezar";
+            updateDisplay();
         }
     </script>
 
