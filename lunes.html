@@ -78,7 +78,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Tarjetas interactivas desplegables */
         .exercise-card {
             background-color: #2a2a2a;
             border: 1px solid #444;
@@ -94,39 +93,10 @@
             border-color: #e87c3e;
         }
 
-        .exercise-card-strength {
-            background-color: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            cursor: pointer;
-            transition: border-color 0.2s ease;
-        }
-
-        .exercise-card-strength:hover {
-            border-color: #e87c3e;
-        }
-
-        /* Estilo para las imágenes reales */
-        .exercise-img {
-            width: 90px;
-            height: 65px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #e87c3e;
-            flex-shrink: 0;
-        }
-
         .card-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            width: 100%;
         }
 
         .card-title {
@@ -152,7 +122,6 @@
             margin: 0;
         }
 
-        /* Contenido oculto que se despliega al hacer clic */
         .card-description {
             display: none;
             margin-top: 12px;
@@ -171,11 +140,170 @@
             color: #e87c3e;
         }
 
-        /* Clase activa para desplegar */
-        .exercise-card.active .card-description,
-        .exercise-card-strength.active .card-description {
+        .exercise-card.active .card-description {
             display: block;
         }
+
+        /* Estilos del Temporizador Flotante */
+        #timer-bubble {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #e87c3e;
+            color: #050505;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(232, 124, 62, 0.4);
+            cursor: pointer;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+        #timer-bubble:hover {
+            transform: scale(1.08);
+        }
+
+        #timer-modal {
+            position: fixed;
+            bottom: 95px;
+            right: 20px;
+            max-width: 350px;
+            width: calc(100% - 40px);
+            background-color: #1a1a1a;
+            border: 1px solid #e87c3e;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            z-index: 10000;
+            display: none;
+            color: #fff;
+        }
+
+        .timer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .timer-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #e87c3e;
+            text-transform: uppercase;
+        }
+
+        .close-timer {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            width: auto;
+        }
+        .close-timer:hover { color: #fff; }
+
+        .timer-inputs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .timer-input-group label {
+            font-size: 0.65rem;
+            color: #aaa;
+            display: block;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .timer-input-group input {
+            width: 100%;
+            padding: 8px;
+            background-color: #111;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .timer-display {
+            text-align: center;
+            background-color: #111;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .timer-status {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #e87c3e;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .timer-clock {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .timer-rounds-info {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .timer-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .timer-btn {
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-start {
+            background-color: #e87c3e;
+            color: #050505;
+            grid-column: span 2;
+        }
+        .btn-start:hover { background-color: #ff8c4a; }
+
+        .btn-pause {
+            background-color: #333;
+            color: #fff;
+        }
+        .btn-pause:hover { background-color: #444; }
+
+        .btn-reset {
+            background-color: #a83232;
+            color: #fff;
+        }
+        .btn-reset:hover { background-color: #c94040; }
     </style>
 </head>
 <body>
@@ -196,212 +324,370 @@
             <div class="card-content">
                 <p class="card-title">MARCHA EN EL LUGAR</p>
                 <p class="card-subtitle">MOVIMIENTO SUAVE</p>
-                <p class="card-details">1 MINUTO X 1 SERIE <span>(Toca para ver detalle)</span></p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Eleva suavemente las rodillas alternando las piernas en el mismo sitio.</p>
-                    <p><strong>Para qué sirve:</strong> Eleva la temperatura corporal y las pulsaciones de forma segura, preparando el corazón para el esfuerzo.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">CÍRCULOS DE HOMBROS</p>
-                <p class="card-subtitle">ARTICULACIÓN LIBRE</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <p><strong>Movimiento:</strong> Traza círculos amplios y lentos con los hombros, primero hacia atrás y luego hacia adelante.</p>
-                    <p><strong>Para qué sirve:</strong> Lubrica la articulación del hombro (el manguito rotador), previniendo lesiones al cargar peso.</p>
+                    <p><strong>Movimiento:</strong> Marcha de pie elevando levemente las rodillas y balanceando los brazos.</p>
+                    <p><strong>Para qué sirve:</strong> Eleva las pulsaciones y lubrica las articulaciones principales.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">ABRIR Y CERRAR BRAZOS</p>
-                <p class="card-subtitle">ACTIVACIÓN PECTORAL</p>
+                <p class="card-title">CÍRCULOS DE BRAZOS</p>
+                <p class="card-subtitle">MOVILIDAD DE HOMBROS</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <p><strong>Movimiento:</strong> Abre los brazos en cruz y luego ciérralos al frente alternando qué brazo pasa por arriba.</p>
-                    <p><strong>Para qué sirve:</strong> Activa dinámicamente los músculos del pecho y de la parte alta de la espalda.</p>
+                    <p><strong>Movimiento:</strong> Realiza círculos amplios con los brazos hacia adelante y hacia atrás.</p>
+                    <p><strong>Para qué sirve:</strong> Prepara el manguito rotador y previene lesiones en el tren superior.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">JUNTAR OMÓPLATOS</p>
-                <p class="card-subtitle">RETRACCIÓN ESCAPULAR</p>
+                <p class="card-title">ROTACIONES DE TRONCO</p>
+                <p class="card-subtitle">MOVILIDAD DE TORSO</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <p><strong>Movimiento:</strong> Con los codos flexionados, empuja los hombros hacia atrás imaginando que quieres sostener un lápiz entre tus omóplatos.</p>
-                    <p><strong>Para qué sirve:</strong> Despierta los músculos estabilizadores de la postura, clave para no encorvarse durante el día.</p>
+                    <p><strong>Movimiento:</strong> Gira suavemente el torso de lado a lado manteniendo la cadera estable.</p>
+                    <p><strong>Para qué sirve:</strong> Activa la musculatura de la cintura y la columna dorsal.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">FLEXIÓN DE CODOS</p>
-                <p class="card-subtitle">MOVILIDAD ARTICULAR</p>
+                <p class="card-title">APERTURAS DE PECHO DE PIE</p>
+                <p class="card-subtitle">ACTIVACIÓN ESCAPULAR</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <p><strong>Movimiento:</strong> Simula hacer un curl de bíceps pero sin peso, estirando y flexionando completamente los codos.</p>
-                    <p><strong>Para qué sirve:</strong> Estimula el líquido sinovial en los codos para que el movimiento sea fluido y sin dolor.</p>
+                    <p><strong>Movimiento:</strong> Abre y cierra los brazos a la altura del pecho apretando la espalda atrás.</p>
+                    <p><strong>Para qué sirve:</strong> Despierta los músculos de la parte alta de la espalda y hombros.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">REMO SIN PESO</p>
-                <p class="card-subtitle">ACTIVACIÓN DORSAL</p>
+                <p class="card-title">INCLINACIONES LATERALES</p>
+                <p class="card-subtitle">ESTIRAMIENTO DINÁMICO</p>
                 <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <p><strong>Movimiento:</strong> Extiende los brazos al frente y jala hacia tu abdomen apretando la espalda.</p>
-                    <p><strong>Para qué sirve:</strong> Conecta tu sistema nervioso con los músculos de la espalda antes de ir a la máquina.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. BLOQUE PRINCIPAL DE FUERZA -->
-        <h3 class="section-title">2. Fuerza y Tonificación (34 min)</h3>
-
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="IMG_8988.jpeg" alt="Lat Pulldown" class="exercise-img">
-            <div class="card-content">
-                <p class="card-title">LAT PULLDOWN</p>
-                <p class="card-subtitle">Jalón al pecho controlado</p>
-                <p class="card-details">2 Series x 10-12 Reps</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Sentada frente a la polea, agarra la barra más ancho que tus hombros. Mantén la espalda recta y lleva la barra hacia la parte alta de tu pecho tirando con los codos.</p>
-                    <p><strong>Para qué sirve:</strong> Trabaja los dorsales (espalda ancha), estilizando la postura y dando una ilusión óptica de cintura más estrecha.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="IMG_8993.jpeg" alt="Machine Chest Press" class="exercise-img">
-            <div class="card-content">
-                <p class="card-title">MACHINE CHEST PRESS</p>
-                <p class="card-subtitle">Press de pecho en máquina</p>
-                <p class="card-details">2 Series x 10-12 Reps</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Siéntate con la espalda firme. Empuja los agarres al frente de manera fluida y regresa lentamente resistiendo el peso.</p>
-                    <p><strong>Para qué sirve:</strong> Tonifica el pectoral y la parte frontal del hombro, brindando firmeza a la zona del escote.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="IMG_8992.jpeg" alt="Seated Cable Row" class="exercise-img">
-            <div class="card-content">
-                <p class="card-title">SEATED CABLE ROW</p>
-                <p class="card-subtitle">Remo sentado en polea</p>
-                <p class="card-details">2 Series x 10-12 Reps</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Con la espalda neutra y abdomen firme, lleva los agarres hacia tu ombligo sin balancear el tronco.</p>
-                    <p><strong>Para qué sirve:</strong> Esculpe el centro de la espalda y elimina la flacidez en la zona superior de la espalda.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="IMG_8991.jpeg" alt="Dumbbell Shoulder Press" class="exercise-img">
-            <div class="card-content">
-                <p class="card-title">DUMBBELL SHOULDER PRESS</p>
-                <p class="card-subtitle">Press de hombros con mancuernas</p>
-                <p class="card-details">2 Series x 10 Reps</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Sostén mancuernas a la altura de los hombros. Sube por encima de la cabeza y baja con control sin arquear la espalda baja.</p>
-                    <p><strong>Para qué sirve:</strong> Da una definición fina y elegante a los hombros, logrando brazos torneados sin volumen excesivo.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="IMG_8990.jpeg" alt="Dumbbell Bicep Curl" class="exercise-img">
-            <div class="card-content">
-                <p class="card-title">DUMBBELL BICEP CURL</p>
-                <p class="card-subtitle">Curl de bíceps estricto</p>
-                <p class="card-details">1-2 Series x 12 Reps</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Flexiona los codos subiendo las mancuernas manteniendo los codos fijos pegados a las costillas.</p>
-                    <p><strong>Para qué sirve:</strong> Tonifica la parte frontal del brazo garantizando firmeza muscular.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="IMG_8989.jpeg" alt="Cable Tricep Pushdown" class="exercise-img">
-            <div class="card-content">
-                <p class="card-title">CABLE TRICEP PUSHDOWN</p>
-                <p class="card-subtitle">Extensión de tríceps en polea</p>
-                <p class="card-details">1-2 Series x 12 Reps</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Frente a la polea alta, extiende los codos empujando el cable hacia abajo y regresa despacio.</p>
-                    <p><strong>Para qué sirve:</strong> Es el ejercicio clave para tensar la parte posterior del brazo y evitar la piel flácida.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 3. ESTIRAMIENTOS Y FLEXIBILIDAD -->
-        <h3 class="section-title">3. Estiramientos y Splits (5 min)</h3>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">CROSS-BODY SHOULDER STRETCH</p>
-                <p class="card-subtitle">Estiramiento de hombro cruzado</p>
-                <p class="card-details">30 Segundos por brazo</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Pasa un brazo estirado por delante de tu pecho y usa el otro para jalarlo suavemente hacia ti.</p>
-                    <p><strong>Para qué sirve:</strong> Libera la tensión en la cápsula del hombro después de los empujes.</p>
+                    <p><strong>Movimiento:</strong> Con una mano en la cadera, extiende el otro brazo por encima de la cabeza inclinándote.</p>
+                    <p><strong>Para qué sirve:</strong> Estira y activa los oblicuos y los costados del torso.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">CHEST OPENER STRETCH</p>
-                <p class="card-subtitle">Apertura de pecho y postura</p>
-                <p class="card-details">1 Minuto total</p>
+                <p class="card-title">REBOTES SUAVES DE PIERNAS</p>
+                <p class="card-subtitle">CARDIO LIGERO</p>
+                <p class="card-details">1 MINUTO X 1 SERIE</p>
                 <div class="card-description">
-                    <p><strong>Movimiento:</strong> Entrelaza las manos detrás de tu espalda y levántalas suavemente abriendo el pecho sin arquear la espalda baja.</p>
-                    <p><strong>Para qué sirve:</strong> Contrarresta la postura encorvada por estar sentada o frente a la computadora.</p>
+                    <p><strong>Movimiento:</strong> Pequeños saltos suaves en el sitio o elevaciones de talones.</p>
+                    <p><strong>Para qué sirve:</strong> Lleva el cuerpo a la temperatura ideal para iniciar los bloques de fuerza.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. BLOQUE PRINCIPAL -->
+        <h3 class="section-title">2. Bloque Principal - Tren Superior & Core (32 min)</h3>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">FLEXIONES INCLINADAS O EN RODILLAS</p>
+                <p class="card-subtitle">PECHO Y TRÍCEPS</p>
+                <p class="card-details">3 Series x 10-12 Repeticiones</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Apoya las manos en una superficie elevada (o rodillas en el suelo) y baja el pecho de forma controlada.</p>
+                    <p><strong>Para qué sirve:</strong> Fortalece el pectoral, los hombros y los brazos adaptado a tu nivel.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">UPPER BACK STRETCH</p>
-                <p class="card-subtitle">Estiramiento de espalda alta</p>
-                <p class="card-details">1 Minuto total</p>
+                <p class="card-title">REMO CON MANCUERNAS A UNA MANO</p>
+                <p class="card-subtitle">ESPALDA Y BÍCEPS</p>
+                <p class="card-details">3 Series x 10 Repeticiones (cada lado)</p>
                 <div class="card-description">
-                    <p><strong>Movimiento:</strong> Entrelaza los dedos al frente, estira los brazos y redondea suavemente la parte alta de tu espalda.</p>
-                    <p><strong>Para qué sirve:</strong> Descomprime los omóplatos y relaja el trapecio.</p>
+                    <p><strong>Movimiento:</strong> Apoyada en una silla, eleva la mancuerna hacia la cadera contrayendo la espalda.</p>
+                    <p><strong>Para qué sirve:</strong> Esculpe la espalda alta y mejora la postura corporal.</p>
                 </div>
             </div>
         </div>
 
         <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
-                <p class="card-title">LOW LUNGE HIP FLEXOR STRETCH</p>
-                <p class="card-subtitle">Desplante bajo (Rumbo a los Splits)</p>
-                <p class="card-details">1 Minuto por pierna</p>
+                <p class="card-title">PRESS DE HOMBROS SENTADA</p>
+                <p class="card-subtitle">DELTOIDES</p>
+                <p class="card-details">3 Series x 10 Repeticiones</p>
                 <div class="card-description">
-                    <p><strong>Movimiento:</strong> Apoya una rodilla en el suelo y empuja la cadera hacia adelante manteniendo el torso completamente recto.</p>
-                    <p><strong>Para qué sirve:</strong> Estira profundamente los flexores de la cadera (psoas) para mejorar la flexibilidad rumbo a los splits.</p>
+                    <p><strong>Movimiento:</strong> Con mancuernas a la altura de los hombros, empuja hacia arriba por encima de la cabeza.</p>
+                    <p><strong>Para qué sirve:</strong> Define los hombros y da fuerza a todo el tren superior.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">ELEVACIONES LATERALES</p>
+                <p class="card-subtitle">HOMBRO LATERAL</p>
+                <p class="card-details">3 Series x 12 Repeticiones</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Eleva los brazos hacia los lados con una ligera flexión en los codos hasta la altura de los hombros.</p>
+                    <p><strong>Para qué sirve:</strong> Da amplitud visual a los hombros y estiliza los brazos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">PLANCHA FRONTAL CON TOQUES DE HOMBRO</p>
+                <p class="card-subtitle">CORE Y ESTABILIDAD</p>
+                <p class="card-details">3 Series x 30 Segundos</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> En posición de plancha alta, toca alternadamente tu hombro opuesto intentando no girar la cadera.</p>
+                    <p><strong>Para qué sirve:</strong> Desafía el abdomen profundo y fortalece la estabilidad escapular.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">CRUNCH ABDOMINAL CLÁSICO</p>
+                <p class="card-subtitle">RECTO ABDOMINAL</p>
+                <p class="card-details">3 Series x 15 Repeticiones</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Tumbada boca arriba con rodillas flexionadas, eleva los omóplatos despegándolos del suelo.</p>
+                    <p><strong>Para qué sirve:</strong> Contrae de forma aislada la parte superior del abdomen.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. VUELTA A LA CALMA -->
+        <h3 class="section-title">3. Vuelta a la Calma y Estiramientos (7 min)</h3>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">ESTIRAMIENTO DE PECHO EN PARED</p>
+                <p class="card-subtitle">PECTORAL</p>
+                <p class="card-details">1 Minuto (30s por lado)</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Coloca el antebrazo en la pared y gira el torso suavemente hacia el lado contrario.</p>
+                    <p><strong>Para qué sirve:</strong> Alivia la tensión acumulada en el pecho tras las flexiones.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">ESTIRAMIENTO DE TRÍCEPS Y HOMBRO</p>
+                <p class="card-subtitle">TREN SUPERIOR</p>
+                <p class="card-details">1 Minuto (30s por brazo)</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Cruza el brazo por delante del pecho o llévalo doblado detrás de la cabeza.</p>
+                    <p><strong>Para qué sirve:</strong> Relaja los hombros y la parte posterior de los brazos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">POSTURA DEL GATO - VACA</p>
+                <p class="card-subtitle">COLUMNA</p>
+                <p class="card-details">2 Minutos</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> En cuatro puntos, arquea la espalda hacia arriba (gato) y hunde el pecho suavemente (vaca).</p>
+                    <p><strong>Para qué sirve:</strong> Devuelve la movilidad natural a toda la espalda.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="exercise-card" onclick="toggleCard(this)">
+            <div class="card-content">
+                <p class="card-title">RESPIRACIÓN PROFUNDA Y RELAJACIÓN</p>
+                <p class="card-subtitle">CIERRE</p>
+                <p class="card-details">3 Minutos</p>
+                <div class="card-description">
+                    <p><strong>Movimiento:</strong> Acostada o sentada, inhala profundamente inflando el abdomen y exhala lento.</p>
+                    <p><strong>Para qué sirve:</strong> Baja las pulsaciones cardíacas y relaja el sistema nervioso.</p>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- Script JavaScript para desplegar las descripciones al tocar -->
+    <!-- Burbuja Flotante del Temporizador -->
+    <div id="timer-bubble" onclick="toggleTimerModal()" title="Abrir Temporizador">
+        ⏱
+    </div>
+
+    <!-- Widget Desplegable del Temporizador -->
+    <div id="timer-modal">
+        <div class="timer-header">
+            <h3>Temporizador HIIT</h3>
+            <button class="close-timer" onclick="toggleTimerModal()">✕</button>
+        </div>
+
+        <div class="timer-inputs" id="timerConfigSection">
+            <div class="timer-input-group">
+                <label>Trabajo (s)</label>
+                <input type="number" id="workTime" value="45" min="1">
+            </div>
+            <div class="timer-input-group">
+                <label>Descanso (s)</label>
+                <input type="number" id="restTime" value="15" min="0">
+            </div>
+            <div class="timer-input-group">
+                <label>Rondas</label>
+                <input type="number" id="totalRounds" value="3" min="1">
+            </div>
+        </div>
+
+        <div class="timer-display">
+            <div class="timer-status" id="timerStatusText">Listo para empezar</div>
+            <div class="timer-clock" id="timerClockDisplay">00:45</div>
+            <div class="timer-rounds-info" id="timerRoundsDisplay">Ronda 1 de 3</div>
+        </div>
+
+        <div class="timer-actions">
+            <button class="timer-btn btn-start" id="startPauseBtn" onclick="startPauseTimer()">Iniciar</button>
+            <button class="timer-btn btn-pause" id="pauseBtn" onclick="pauseTimer()" style="display: none;">Pausar</button>
+            <button class="timer-btn btn-reset" onclick="resetTimer()">Reiniciar</button>
+        </div>
+    </div>
+
     <script>
         function toggleCard(card) {
             card.classList.toggle('active');
+        }
+
+        // Lógica del Temporizador
+        let timerInterval = null;
+        let isRunning = false;
+        let isPaused = false;
+        let currentPhase = 'work';
+        let timeLeft = 45;
+        let currentRound = 1;
+        let maxRounds = 3;
+        let workDuration = 45;
+        let restDuration = 15;
+
+        function toggleTimerModal() {
+            const modal = document.getElementById('timer-modal');
+            modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function updateDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timerClockDisplay').textContent = 
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            
+            document.getElementById('timerRoundsDisplay').textContent = `Ronda ${currentRound} de ${maxRounds}`;
+            
+            const statusEl = document.getElementById('timerStatusText');
+            if(currentPhase === 'work') {
+                statusEl.textContent = "🔥 ¡Trabajo!";
+                statusEl.style.color = "#e87c3e";
+            } else {
+                statusEl.textContent = "💧 Descanso";
+                statusEl.style.color = "#4caf50";
+            }
+        }
+
+        function startPauseTimer() {
+            if (!isRunning && !isPaused) {
+                workDuration = parseInt(document.getElementById('workTime').value) || 45;
+                restDuration = parseInt(document.getElementById('restTime').value) || 15;
+                maxRounds = parseInt(document.getElementById('totalRounds').value) || 3;
+                
+                timeLeft = workDuration;
+                currentPhase = 'work';
+                currentRound = 1;
+                
+                document.getElementById('timerConfigSection').style.display = 'none';
+                document.getElementById('startPauseBtn').style.display = 'none';
+                document.getElementById('pauseBtn').style.display = 'block';
+                document.getElementById('pauseBtn').textContent = 'Pausar';
+                
+                isRunning = true;
+                isPaused = false;
+            } else if (isPaused) {
+                isPaused = false;
+                document.getElementById('pauseBtn').textContent = 'Pausar';
+                isRunning = true;
+            }
+
+            updateDisplay();
+            if(timerInterval) clearInterval(timerInterval);
+            
+            timerInterval = setInterval(() => {
+                if (isRunning && !isPaused) {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateDisplay();
+                    } else {
+                        if (currentPhase === 'work') {
+                            if (restDuration > 0) {
+                                currentPhase = 'rest';
+                                timeLeft = restDuration;
+                            } else {
+                                handleRoundProgression();
+                            }
+                        } else {
+                            handleRoundProgression();
+                        }
+                    }
+                }
+            }, 1000);
+        }
+
+        function handleRoundProgression() {
+            if (currentRound < maxRounds) {
+                currentRound++;
+                currentPhase = 'work';
+                timeLeft = workDuration;
+            } else {
+                clearInterval(timerInterval);
+                isRunning = false;
+                isPaused = false;
+                document.getElementById('timerStatusText').textContent = "¡Completado! 🎉";
+                document.getElementById('startPauseBtn').style.display = 'block';
+                document.getElementById('startPauseBtn').textContent = 'Reiniciar Todo';
+                document.getElementById('pauseBtn').style.display = 'none';
+                document.getElementById('timerConfigSection').style.display = 'grid';
+                return;
+            }
+            updateDisplay();
+        }
+
+        function pauseTimer() {
+            if (isRunning) {
+                isPaused = true;
+                isRunning = false;
+                document.getElementById('pauseBtn').textContent = 'Reanudar';
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            isPaused = false;
+            workDuration = parseInt(document.getElementById('workTime').value) || 45;
+            timeLeft = workDuration;
+            currentPhase = 'work';
+            currentRound = 1;
+
+            document.getElementById('timerConfigSection').style.display = 'grid';
+            document.getElementById('startPauseBtn').style.display = 'block';
+            document.getElementById('startPauseBtn').textContent = 'Iniciar';
+            document.getElementById('pauseBtn').style.display = 'none';
+            document.getElementById('timerStatusText').textContent = "Listo para empezar";
+            updateDisplay();
         }
     </script>
 
