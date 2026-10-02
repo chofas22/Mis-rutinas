@@ -144,7 +144,7 @@
             display: block;
         }
 
-        /* Estilos del Temporizador Flotante */
+        /* Estilos del Temporizador Flotante Optimizados */
         #timer-bubble {
             position: fixed;
             bottom: 25px;
@@ -171,30 +171,31 @@
             position: fixed;
             bottom: 95px;
             right: 20px;
-            max-width: 350px;
+            max-width: 360px;
             width: calc(100% - 40px);
             background-color: #1a1a1a;
             border: 1px solid #e87c3e;
             border-radius: 16px;
-            padding: 20px;
+            padding: 18px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.6);
             z-index: 10000;
             display: none;
             color: #fff;
+            box-sizing: border-box;
         }
 
         .timer-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-bottom: 1px solid #333;
-            padding-bottom: 10px;
+            padding-bottom: 8px;
         }
 
         .timer-header h3 {
             margin: 0;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #e87c3e;
             text-transform: uppercase;
         }
@@ -210,25 +211,41 @@
         }
         .close-timer:hover { color: #fff; }
 
-        .timer-inputs {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 15px;
+        /* Contenedor ordenado para evitar amontonamientos */
+        .timer-inputs-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
         }
 
-        .timer-input-group label {
-            font-size: 0.65rem;
-            color: #aaa;
-            display: block;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
-
-        .timer-input-group input {
-            width: 100%;
-            padding: 8px;
+        .timer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background-color: #111;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .timer-row label {
+            font-size: 0.75rem;
+            color: #ccc;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .timer-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .timer-row input {
+            width: 55px;
+            padding: 6px;
+            background-color: #1a1a1a;
             border: 1px solid #444;
             border-radius: 6px;
             color: #fff;
@@ -237,13 +254,24 @@
             font-size: 0.9rem;
         }
 
+        .timer-row select {
+            padding: 6px;
+            background-color: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
         .timer-display {
             text-align: center;
             background-color: #111;
             border: 2px solid #333;
             border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 12px;
+            margin-bottom: 12px;
         }
 
         .timer-status {
@@ -251,12 +279,12 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: #e87c3e;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: 700;
         }
 
         .timer-clock {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
             color: #ffffff;
             margin: 0;
@@ -265,45 +293,43 @@
         .timer-rounds-info {
             font-size: 0.75rem;
             color: #888;
-            margin-top: 5px;
+            margin-top: 4px;
             text-transform: uppercase;
         }
 
+        /* Botones con iconos limpios */
         .timer-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
             gap: 8px;
         }
 
         .timer-btn {
-            padding: 10px;
+            padding: 12px;
             border: none;
             border-radius: 8px;
             font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.75rem;
+            font-size: 1.1rem;
             cursor: pointer;
-            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
         }
 
-        .btn-start {
+        .btn-main {
             background-color: #e87c3e;
             color: #050505;
-            grid-column: span 2;
+            flex: 1;
         }
-        .btn-start:hover { background-color: #ff8c4a; }
+        .btn-main:hover { background-color: #ff8c4a; }
 
-        .btn-pause {
+        .btn-reset-icon {
             background-color: #333;
             color: #fff;
+            width: 48px;
+            flex-shrink: 0;
         }
-        .btn-pause:hover { background-color: #444; }
-
-        .btn-reset {
-            background-color: #a83232;
-            color: #fff;
-        }
-        .btn-reset:hover { background-color: #c94040; }
+        .btn-reset-icon:hover { background-color: #444; }
     </style>
 </head>
 <body>
@@ -525,25 +551,39 @@
         ⏱
     </div>
 
-    <!-- Widget Desplegable del Temporizador -->
+    <!-- Widget Desplegable del Temporizador Optimizado -->
     <div id="timer-modal">
         <div class="timer-header">
             <h3>Temporizador HIIT</h3>
             <button class="close-timer" onclick="toggleTimerModal()">✕</button>
         </div>
 
-        <div class="timer-inputs" id="timerConfigSection">
-            <div class="timer-input-group">
-                <label>Trabajo (s)</label>
-                <input type="number" id="workTime" value="45" min="1">
+        <div class="timer-inputs-grid" id="timerConfigSection">
+            <div class="timer-row">
+                <label>Trabajo</label>
+                <div class="timer-input-wrapper">
+                    <input type="number" id="workTime" value="45" min="1">
+                    <select id="workUnit">
+                        <option value="sec" selected>seg</option>
+                        <option value="min">min</option>
+                    </select>
+                </div>
             </div>
-            <div class="timer-input-group">
-                <label>Descanso (s)</label>
-                <input type="number" id="restTime" value="15" min="0">
+            <div class="timer-row">
+                <label>Descanso</label>
+                <div class="timer-input-wrapper">
+                    <input type="number" id="restTime" value="15" min="0">
+                    <select id="restUnit">
+                        <option value="sec" selected>seg</option>
+                        <option value="min">min</option>
+                    </select>
+                </div>
             </div>
-            <div class="timer-input-group">
+            <div class="timer-row">
                 <label>Rondas</label>
-                <input type="number" id="totalRounds" value="3" min="1">
+                <div class="timer-input-wrapper">
+                    <input type="number" id="totalRounds" value="3" min="1" style="width: 85px;">
+                </div>
             </div>
         </div>
 
@@ -553,10 +593,10 @@
             <div class="timer-rounds-info" id="timerRoundsDisplay">Ronda 1 de 3</div>
         </div>
 
+        <!-- Botones con iconos limpios -->
         <div class="timer-actions">
-            <button class="timer-btn btn-start" id="startPauseBtn" onclick="startPauseTimer()">Iniciar</button>
-            <button class="timer-btn btn-pause" id="pauseBtn" onclick="pauseTimer()" style="display: none;">Pausar</button>
-            <button class="timer-btn btn-reset" onclick="resetTimer()">Reiniciar</button>
+            <button class="timer-btn btn-main" id="mainActionBtn" onclick="startPauseTimer()" title="Iniciar / Pausar">▶</button>
+            <button class="timer-btn btn-reset-icon" onclick="resetTimer()" title="Reiniciar">🔄</button>
         </div>
     </div>
 
@@ -565,7 +605,7 @@
             card.classList.toggle('active');
         }
 
-        // Lógica del Temporizador
+        // Lógica del Temporizador con soporte para Segundos / Minutos y Botones de Iconos
         let timerInterval = null;
         let isRunning = false;
         let isPaused = false;
@@ -599,27 +639,45 @@
             }
         }
 
+        function getTimeInSeconds(inputId, unitId) {
+            const val = parseInt(document.getElementById(inputId).value) || 0;
+            const unit = document.getElementById(unitId).value;
+            return (unit === 'min') ? val * 60 : val;
+        }
+
         function startPauseTimer() {
+            const mainBtn = document.getElementById('mainActionBtn');
+
             if (!isRunning && !isPaused) {
-                workDuration = parseInt(document.getElementById('workTime').value) || 45;
-                restDuration = parseInt(document.getElementById('restTime').value) || 15;
+                // Iniciar por primera vez o después de terminar
+                workDuration = getTimeInSeconds('workTime', 'workUnit');
+                restDuration = getTimeInSeconds('restTime', 'restUnit');
                 maxRounds = parseInt(document.getElementById('totalRounds').value) || 3;
                 
+                if(workDuration <= 0) {
+                    alert('Por favor ingresa un tiempo de trabajo válido.');
+                    return;
+                }
+
                 timeLeft = workDuration;
                 currentPhase = 'work';
                 currentRound = 1;
                 
                 document.getElementById('timerConfigSection').style.display = 'none';
-                document.getElementById('startPauseBtn').style.display = 'none';
-                document.getElementById('pauseBtn').style.display = 'block';
-                document.getElementById('pauseBtn').textContent = 'Pausar';
+                mainBtn.textContent = '⏸'; // Cambiar a pausa
                 
                 isRunning = true;
                 isPaused = false;
+            } else if (isRunning && !isPaused) {
+                // Pausar
+                isPaused = true;
+                isRunning = false;
+                mainBtn.textContent = '▶'; // Cambiar a play
             } else if (isPaused) {
+                // Reanudar
                 isPaused = false;
-                document.getElementById('pauseBtn').textContent = 'Pausar';
                 isRunning = true;
+                mainBtn.textContent = '⏸'; // Cambiar a pausa
             }
 
             updateDisplay();
@@ -656,36 +714,25 @@
                 isRunning = false;
                 isPaused = false;
                 document.getElementById('timerStatusText').textContent = "¡Completado! 🎉";
-                document.getElementById('startPauseBtn').style.display = 'block';
-                document.getElementById('startPauseBtn').textContent = 'Reiniciar Todo';
-                document.getElementById('pauseBtn').style.display = 'none';
-                document.getElementById('timerConfigSection').style.display = 'grid';
+                document.getElementById('mainActionBtn').textContent = '▶';
+                document.getElementById('timerConfigSection').style.display = 'flex';
                 return;
             }
             updateDisplay();
-        }
-
-        function pauseTimer() {
-            if (isRunning) {
-                isPaused = true;
-                isRunning = false;
-                document.getElementById('pauseBtn').textContent = 'Reanudar';
-            }
         }
 
         function resetTimer() {
             clearInterval(timerInterval);
             isRunning = false;
             isPaused = false;
-            workDuration = parseInt(document.getElementById('workTime').value) || 45;
-            timeLeft = workDuration;
+            
+            workDuration = getTimeInSeconds('workTime', 'workUnit');
+            timeLeft = workDuration > 0 ? workDuration : 45;
             currentPhase = 'work';
             currentRound = 1;
 
-            document.getElementById('timerConfigSection').style.display = 'grid';
-            document.getElementById('startPauseBtn').style.display = 'block';
-            document.getElementById('startPauseBtn').textContent = 'Iniciar';
-            document.getElementById('pauseBtn').style.display = 'none';
+            document.getElementById('timerConfigSection').style.display = 'flex';
+            document.getElementById('mainActionBtn').textContent = '▶';
             document.getElementById('timerStatusText').textContent = "Listo para empezar";
             updateDisplay();
         }
