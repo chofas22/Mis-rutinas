@@ -22,10 +22,24 @@
             width: 100%;
         }
 
+        .back-btn {
+            display: inline-block;
+            color: #e87c3e;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
         .header {
             text-align: center;
             margin-bottom: 35px;
-            padding: 20px 0;
+            padding: 15px 0;
             border-bottom: 1px solid #222;
         }
 
@@ -64,7 +78,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Botones del Menú de Días */
         .day-card {
             background-color: #2a2a2a;
             border: 1px solid #444;
@@ -102,7 +115,6 @@
             margin: 0;
         }
 
-        /* Tarjetas bloqueadas para días futuros */
         .day-card.locked {
             background-color: #161616;
             border-color: #222;
@@ -128,7 +140,9 @@
 <body>
 
     <div class="app-container">
-        <!-- Portada Principal -->
+        <!-- Botón para regresar al menú principal de la app -->
+        <a href="index.html" class="back-btn">← Volver al Menú Principal</a>
+
         <div class="header">
             <h2>PLAN DE ENTRENAMIENTO</h2>
             <h1>SEMANAL</h1>
@@ -137,7 +151,7 @@
 
         <h3 class="section-title">Selecciona tu rutina</h3>
 
-        <!-- Lunes (Activo) -->
+        <!-- Lunes -->
         <a href="lunes.html" class="day-card active">
             <div class="day-info">
                 <h3>Lunes</h3>
@@ -146,7 +160,7 @@
             <div class="arrow">→</div>
         </a>
 
-        <!-- Martes (Activo) -->
+        <!-- Martes -->
         <a href="martes.html" class="day-card active">
             <div class="day-info">
                 <h3>Martes</h3>
@@ -155,7 +169,7 @@
             <div class="arrow">→</div>
         </a>
 
-        <!-- Miércoles (Activo) -->
+        <!-- Miércoles -->
         <a href="miercoles.html" class="day-card active">
             <div class="day-info">
                 <h3>Miércoles</h3>
@@ -164,7 +178,7 @@
             <div class="arrow">→</div>
         </a>
 
-        <!-- Jueves (Activo) -->
+        <!-- Jueves -->
         <a href="jueves.html" class="day-card active">
             <div class="day-info">
                 <h3>Jueves</h3>
@@ -173,7 +187,7 @@
             <div class="arrow">→</div>
         </a>
 
-        <!-- Viernes (Activo) -->
+        <!-- Viernes -->
         <a href="viernes.html" class="day-card active">
             <div class="day-info">
                 <h3>Viernes</h3>
