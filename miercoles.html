@@ -78,7 +78,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Tarjetas estándar y de fuerza con imagen */
         .exercise-card {
             background-color: #2a2a2a;
             border: 1px solid #444;
@@ -92,33 +91,6 @@
 
         .exercise-card:hover {
             border-color: #e87c3e;
-        }
-
-        .exercise-card-strength {
-            background-color: #2a2a2a;
-            border: 1px solid #444;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-            cursor: pointer;
-            transition: border-color 0.2s ease;
-        }
-
-        .exercise-card-strength:hover {
-            border-color: #e87c3e;
-        }
-
-        .exercise-img {
-            width: 90px;
-            height: 65px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #e87c3e;
-            flex-shrink: 0;
         }
 
         .card-content {
@@ -151,6 +123,16 @@
             margin: 0;
         }
 
+        /* Estilo para las imágenes a tamaño completo al revelar la tarjeta */
+        .exercise-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+        }
+
         .card-description {
             display: none;
             margin-top: 12px;
@@ -169,9 +151,190 @@
             color: #e87c3e;
         }
 
-        .exercise-card.active .card-description,
-        .exercise-card-strength.active .card-description {
+        .exercise-card.active .card-description {
             display: block;
+        }
+
+        /* Estilos del Temporizador Flotante Avanzado */
+        #timer-bubble {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #e87c3e;
+            color: #050505;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(232, 124, 62, 0.4);
+            cursor: pointer;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+        #timer-bubble:hover {
+            transform: scale(1.08);
+        }
+        #timer-bubble svg {
+            width: 26px;
+            height: 26px;
+            fill: #050505;
+        }
+
+        #timer-modal {
+            position: fixed;
+            bottom: 95px;
+            right: 20px;
+            max-width: 360px;
+            width: calc(100% - 40px);
+            background-color: #1a1a1a;
+            border: 1px solid #e87c3e;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            z-index: 10000;
+            display: none;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        .timer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+        .timer-header h3 {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #e87c3e;
+            text-transform: uppercase;
+        }
+        .close-timer {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            width: auto;
+        }
+        .close-timer:hover { color: #fff; }
+
+        .timer-inputs-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .timer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #111;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        .timer-row label {
+            font-size: 0.75rem;
+            color: #ccc;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .timer-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .timer-row input, .timer-row select {
+            background-color: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .timer-row input {
+            width: 55px;
+            padding: 6px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .timer-row select {
+            padding: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .timer-display {
+            text-align: center;
+            background-color: #111;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        .timer-status {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #e87c3e;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        .timer-clock {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+        }
+        .timer-rounds-info {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+
+        .timer-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .timer-btn {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .timer-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        .btn-main {
+            background-color: #e87c3e;
+            color: #050505;
+            flex: 1;
+        }
+        .btn-main:hover { background-color: #ff8c4a; }
+        .btn-reset-icon {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            color: #fff;
+            width: 48px;
+            flex-shrink: 0;
+            border-radius: 8px;
+        }
+        .btn-reset-icon:hover {
+            background-color: #383838;
+            border-color: #e87c3e;
         }
     </style>
 </head>
@@ -264,78 +427,78 @@
         <!-- 2. BLOQUE PRINCIPAL DE FUERZA -->
         <h3 class="section-title">2. Fuerza y Tonificación (32 min)</h3>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Barbell_Hip_Thrust.jpeg" alt="Barbell Hip Thrust" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">BARBELL HIP THRUST</p>
                 <p class="card-subtitle">Puente de glúteos con barra</p>
                 <p class="card-details">3 Series x 10-12 Reps</p>
                 <div class="card-description">
+                    <img src="Barbell_Hip_Thrust.jpeg" alt="Barbell Hip Thrust" class="exercise-img">
                     <p><strong>Movimiento:</strong> Apoya la espalda alta en un banco, coloca la barra sobre la cadera y empuja hacia arriba contrayendo fuerte los glúteos en la cima.</p>
                     <p><strong>Para qué sirve:</strong> El ejercicio estelar para el desarrollo, volumen y firmeza de los glúteos.</p>
                 </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Goblet_Squat.jpeg" alt="Goblet Squat" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">GOBLET SQUAT</p>
                 <p class="card-subtitle">Sentadilla con mancuerna al pecho</p>
                 <p class="card-details">3 Series x 10-12 Reps</p>
                 <div class="card-description">
+                    <img src="Goblet_Squat.jpeg" alt="Goblet Squat" class="exercise-img">
                     <p><strong>Movimiento:</strong> Sostén una mancuerna verticalmente frente al pecho. Baja la cadera de forma profunda manteniendo el torso erguido.</p>
                     <p><strong>Para qué sirve:</strong> Tonifica cuádriceps y glúteos protegiendo la columna gracias a la carga frontal.</p>
                 </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Romanian_Deadlift.jpeg" alt="Romanian Deadlift" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">ROMANIAN DEADLIFT</p>
                 <p class="card-subtitle">Peso muerto rumano con mancuernas</p>
                 <p class="card-details">3 Series x 10-12 Reps</p>
                 <div class="card-description">
+                    <img src="Romanian_Deadlift.jpeg" alt="Romanian Deadlift" class="exercise-img">
                     <p><strong>Movimiento:</strong> Con una ligera flexión de rodillas, empuja la cadera hacia atrás sintiendo el estiramiento en los femorales y sube apretando glúteos.</p>
                     <p><strong>Para qué sirve:</strong> Modela la cadena posterior (femorales y glúteos) y mejora notablemente la postura.</p>
                 </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Bulgarian_Split_Squat.jpeg" alt="Bulgarian Split Squat" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">BULGARIAN SPLIT SQUAT</p>
                 <p class="card-subtitle">Desplantes búlgaros</p>
                 <p class="card-details">2 Series x 10 Reps por pierna</p>
                 <div class="card-description">
+                    <img src="Bulgarian_Split_Squat.jpeg" alt="Bulgarian Split Squat" class="exercise-img">
                     <p><strong>Movimiento:</strong> Coloca un empeine apoyado en el banco trasero y baja controladamente con la pierna delantera.</p>
                     <p><strong>Para qué sirve:</strong> Trabajo unilateral profundo que elimina desequilibrios y esculpe el glúteo mayor y medio.</p>
                 </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Seated_Leg_Curl.jpeg" alt="Seated Leg Curl" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">SEATED LEG CURL</p>
                 <p class="card-subtitle">Curl femoral sentado en máquina</p>
                 <p class="card-details">2 Series x 12 Reps</p>
                 <div class="card-description">
+                    <img src="Seated_Leg_Curl.jpeg" alt="Seated Leg Curl" class="exercise-img">
                     <p><strong>Movimiento:</strong> Sentada en la máquina, flexiona las piernas hacia abajo y regresa de forma resistida.</p>
                     <p><strong>Para qué sirve:</strong> Aísla por completo los músculos isquiotibiales (detrás del muslo).</p>
                 </div>
             </div>
         </div>
 
-        <div class="exercise-card-strength" onclick="toggleCard(this)">
-            <img src="Standing_Calf_Raise.jpeg" alt="Standing Calf Raise" class="exercise-img">
+        <div class="exercise-card" onclick="toggleCard(this)">
             <div class="card-content">
                 <p class="card-title">STANDING CALF RAISE</p>
                 <p class="card-subtitle">Elevación de talones</p>
                 <p class="card-details">2 Series x 15 Reps</p>
                 <div class="card-description">
+                    <img src="Standing_Calf_Raise.jpeg" alt="Standing Calf Raise" class="exercise-img">
                     <p><strong>Movimiento:</strong> Sube sobre la punta de tus pies buscando el punto máximo de contracción y baja estirando el talón.</p>
                     <p><strong>Para qué sirve:</strong> Da definición, fuerza y soporte estético a las pantorrillas.</p>
                 </div>
@@ -395,9 +558,283 @@
 
     </div>
 
+    <!-- Burbuja Flotante con Icono SVG Vectorial -->
+    <div id="timer-bubble" onclick="toggleTimerModal()" title="Abrir Temporizador">
+        <svg viewBox="0 0 24 24">
+            <path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+        </svg>
+    </div>
+
+    <!-- Widget Desplegable del Temporizador -->
+    <div id="timer-modal">
+        <div class="timer-header">
+            <h3>Temporizador HIIT</h3>
+            <button class="close-timer" onclick="toggleTimerModal()">✕</button>
+        </div>
+
+        <div class="timer-inputs-grid" id="timerConfigSection">
+            <div class="timer-row">
+                <label>Trabajo</label>
+                <div class="timer-input-wrapper">
+                    <input type="number" id="workTime" value="45" min="1">
+                    <select id="workUnit">
+                        <option value="sec" selected>seg</option>
+                        <option value="min">min</option>
+                    </select>
+                </div>
+            </div>
+            <div class="timer-row">
+                <label>Descanso</label>
+                <div class="timer-input-wrapper">
+                    <input type="number" id="restTime" value="15" min="0">
+                    <select id="restUnit">
+                        <option value="sec" selected>seg</option>
+                        <option value="min">min</option>
+                    </select>
+                </div>
+            </div>
+            <div class="timer-row">
+                <label>Rondas</label>
+                <div class="timer-input-wrapper">
+                    <input type="number" id="totalRounds" value="3" min="1" style="width: 85px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="timer-display">
+            <div class="timer-status" id="timerStatusText">Listo para empezar</div>
+            <div class="timer-clock" id="timerClockDisplay">00:45</div>
+            <div class="timer-rounds-info" id="timerRoundsDisplay">Ronda 1 de 3</div>
+        </div>
+
+        <div class="timer-actions">
+            <button class="timer-btn btn-main" id="mainActionBtn" onclick="startPauseTimer()" title="Iniciar / Pausar">
+                <svg id="mainBtnIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button class="timer-btn btn-reset-icon" onclick="resetTimer()" title="Reiniciar">
+                <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+            </button>
+        </div>
+    </div>
+
     <script>
         function toggleCard(card) {
             card.classList.toggle('active');
+        }
+
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playTone(frequency, duration, type = 'sine') {
+            try {
+                initAudio();
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                
+                osc.type = type;
+                osc.frequency.value = frequency;
+                
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.log("Audio no soportado o bloqueado");
+            }
+        }
+
+        function playBeepShort() { playTone(600, 0.15); }
+        function playBeepHigh() { playTone(880, 0.25); }
+        function playDoubleBeep() { 
+            playTone(880, 0.15);
+            setTimeout(() => playTone(1200, 0.25), 180);
+        }
+
+        let timerInterval = null;
+        let isRunning = false;
+        let isPaused = false;
+        let currentPhase = 'prep'; 
+        let timeLeft = 10;
+        let currentRound = 1;
+        let maxRounds = 3;
+        let workDuration = 45;
+        let restDuration = 15;
+
+        const playSvgHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+        const pauseSvgHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+
+        function toggleTimerModal() {
+            const modal = document.getElementById('timer-modal');
+            modal.style.display = (modal.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function updateDisplay() {
+            const statusEl = document.getElementById('timerStatusText');
+            const clockEl = document.getElementById('timerClockDisplay');
+            
+            document.getElementById('timerRoundsDisplay').textContent = `Ronda ${currentRound} de ${maxRounds}`;
+            
+            if(currentPhase === 'prep') {
+                statusEl.textContent = "⏳ Preparación";
+                statusEl.style.color = "#ffa726";
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                clockEl.style.fontSize = "2.2rem";
+            } else if(currentPhase === 'round_announcement') {
+                statusEl.textContent = ""; 
+                statusEl.style.color = "#e87c3e";
+                clockEl.textContent = `¡RONDA ${currentRound}!`; 
+                clockEl.style.fontSize = "1.8rem"; 
+            } else if(currentPhase === 'work') {
+                statusEl.textContent = `🔥 ¡Trabajo!`;
+                statusEl.style.color = "#e87c3e";
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                clockEl.style.fontSize = "2.2rem";
+            } else {
+                statusEl.textContent = "💧 Descanso";
+                statusEl.style.color = "#4caf50";
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                clockEl.style.fontSize = "2.2rem";
+            }
+        }
+
+        function getTimeInSeconds(inputId, unitId) {
+            const val = parseInt(document.getElementById(inputId).value) || 0;
+            const unit = document.getElementById(unitId).value;
+            return (unit === 'min') ? val * 60 : val;
+        }
+
+        function startPauseTimer() {
+            const mainBtnIcon = document.getElementById('mainBtnIcon');
+
+            if (!isRunning && !isPaused) {
+                workDuration = getTimeInSeconds('workTime', 'workUnit');
+                restDuration = getTimeInSeconds('restTime', 'restUnit');
+                maxRounds = parseInt(document.getElementById('totalRounds').value) || 3;
+                
+                if(workDuration <= 0) {
+                    alert('Por favor ingresa un tiempo de trabajo válido.');
+                    return;
+                }
+
+                currentPhase = 'prep';
+                timeLeft = 10;
+                currentRound = 1;
+                
+                document.getElementById('timerConfigSection').style.display = 'none';
+                mainBtnIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + pauseSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+                
+                isRunning = true;
+                isPaused = false;
+                playBeepHigh();
+            } else if (isRunning && !isPaused) {
+                isPaused = true;
+                isRunning = false;
+                const currentIcon = document.getElementById('mainBtnIcon');
+                currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+            } else if (isPaused) {
+                isPaused = false;
+                isRunning = true;
+                const currentIcon = document.getElementById('mainBtnIcon');
+                currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + pauseSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+            }
+
+            updateDisplay();
+            if(timerInterval) clearInterval(timerInterval);
+            
+            timerInterval = setInterval(() => {
+                if (isRunning && !isPaused) {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        if (currentPhase !== 'round_announcement' && timeLeft <= 3 && timeLeft > 0) {
+                            playBeepShort();
+                        }
+                        updateDisplay();
+                    } else {
+                        if (currentPhase === 'prep') {
+                            triggerRoundAnnouncement();
+                        } else if (currentPhase === 'round_announcement') {
+                            currentPhase = 'work';
+                            timeLeft = workDuration;
+                            playBeepHigh();
+                            updateDisplay();
+                        } else if (currentPhase === 'work') {
+                            if (restDuration > 0) {
+                                currentPhase = 'rest';
+                                timeLeft = restDuration;
+                                playBeepShort();
+                                updateDisplay();
+                            } else {
+                                handleNextRoundProgression();
+                            }
+                        } else if (currentPhase === 'rest') {
+                            handleNextRoundProgression();
+                        }
+                    }
+                }
+            }, 1000);
+        }
+
+        function triggerRoundAnnouncement() {
+            currentPhase = 'round_announcement';
+            timeLeft = 2; 
+            playDoubleBeep();
+            updateDisplay();
+        }
+
+        function handleNextRoundProgression() {
+            if (currentRound < maxRounds) {
+                currentRound++;
+                triggerRoundAnnouncement();
+            } else {
+                clearInterval(timerInterval);
+                isRunning = false;
+                isPaused = false;
+                playDoubleBeep();
+                document.getElementById('timerStatusText').textContent = "¡Completado! 🎉";
+                document.getElementById('timerClockDisplay').textContent = "00:00";
+                
+                const currentIcon = document.getElementById('mainBtnIcon');
+                currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+                
+                document.getElementById('timerConfigSection').style.display = 'flex';
+            }
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            isRunning = false;
+            isPaused = false;
+            
+            workDuration = getTimeInSeconds('workTime', 'workUnit');
+            timeLeft = 10;
+            currentPhase = 'prep';
+            currentRound = 1;
+
+            document.getElementById('timerConfigSection').style.display = 'flex';
+            
+            const currentIcon = document.getElementById('mainBtnIcon');
+            currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+            
+            document.getElementById('timerStatusText').textContent = "Listo para empezar";
+            updateDisplay();
         }
     </script>
 
