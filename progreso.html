@@ -54,6 +54,37 @@
             text-transform: uppercase;
         }
 
+        /* --- ESTILOS DEL DELTA DE PROGRESO (NUEVO) --- */
+        .delta-card {
+            background: linear-gradient(135deg, #221711 0%, #1a1a1a 100%);
+            border: 1px solid #e87c3e;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(232, 124, 62, 0.15);
+        }
+
+        .delta-title {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .delta-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .delta-value span {
+            color: #e87c3e;
+        }
+        /* ------------------------------------------- */
+
         .card {
             background-color: #2a2a2a;
             border: 1px solid #444;
@@ -62,10 +93,9 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             width: 100%;
-            overflow: hidden; /* Evita que cualquier elemento hijo se desborde */
+            overflow: hidden;
         }
 
-        /* Contenedor seguro para la gráfica en móvil */
         .chart-container {
             position: relative;
             width: 100%;
@@ -92,7 +122,6 @@
             margin-bottom: 15px;
         }
 
-        /* Corrección estricta para que la fecha no se salga en móviles (iOS) */
         input[type="date"] {
             appearance: none;
             -webkit-appearance: none;
@@ -173,6 +202,12 @@
             <p style="color: #888; font-size: 0.8rem; text-transform: uppercase; margin: 5px 0 0 0;">Peso, Gráfica e Historial</p>
         </div>
 
+        <!-- Tarjeta de Delta de Progreso (NUEVO) -->
+        <div class="delta-card">
+            <div class="delta-title">Cambio total desde el inicio</div>
+            <div class="delta-value" id="deltaDisplay">--</div>
+        </div>
+
         <!-- Gráfica de Progreso -->
         <div class="card">
             <h3 style="color: #e87c3e; margin-top: 0; font-size: 1rem; text-transform: uppercase;">Gráfica de Peso (kg)</h3>
@@ -222,6 +257,27 @@
 
             const labels = records.map(r => r.date);
             const weights = records.map(r => r.weight);
+
+            // --- CALCULAR EL DELTA DE PROGRESO (NUEVO) ---
+            const deltaEl = document.getElementById('deltaDisplay');
+            if (records.length >= 2) {
+                const firstWeight = records[0].weight;
+                const latestWeight = records[records.length - 1].weight;
+                const diff = (latestWeight - firstWeight).toFixed(1);
+                
+                if (diff < 0) {
+                    deltaEl.innerHTML = `<span>${diff} kg</span> <span style="font-size: 0.9rem; color: #4caf50;">📉 ¡Vas bien!</span>`;
+                } else if (diff > 0) {
+                    deltaEl.innerHTML = `<span>+${diff} kg</span> <span style="font-size: 0.9rem; color: #ffa726;">📈 Ganancia</span>`;
+                } else {
+                    deltaEl.innerHTML = `<span>0.0 kg</span> <span style="font-size: 0.9rem; color: #888;">⚖️ Sin cambios</span>`;
+                }
+            } else if (records.length === 1) {
+                deltaEl.innerHTML = `<span style="font-size: 1.1rem; color: #888;">¡Primer registro guardado! 🎉</span>`;
+            } else {
+                deltaEl.innerHTML = `<span style="font-size: 1rem; color: #666;">Sin datos aún</span>`;
+            }
+            // ---------------------------------------------
 
             if (window.myChart) {
                 window.myChart.destroy();
@@ -316,6 +372,7 @@
                 records.push({
                     id: newId,
                     date: dateInput,
+                    weight: parseFloat(weightIndicator || weightInput),
                     weight: parseFloat(weightInput),
                     photo: null
                 });
