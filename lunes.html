@@ -161,7 +161,7 @@
             background-color: #111;
             border: 1px solid #444;
             margin-bottom: 15px;
-            display: none; /* Se muestra con JS si tiene imagen */
+            display: none;
         }
 
         .trainer-instructions {
@@ -433,7 +433,7 @@
 <body>
 
     <div class="app-container">
-        <a href="rutinas.html" class="back-btn">← Volver a Rutinas</a>
+        <a href="rutinas.html" class="back-btn">← Volver al Rutinas</a>
 
         <div class="header">
             <h2>LUNES</h2>
@@ -806,19 +806,22 @@
                 const imgSrc = imgEl ? imgEl.src : null;
                 const imgAlt = imgEl ? imgEl.alt : '';
 
-                // Extraer descripciones HTML internas
+                // Extraer descripciones HTML internas sin duplicar la imagen
                 const descEl = card.querySelector('.card-description');
                 let instructionsHTML = '';
                 let weightInputId = null;
 
                 if (descEl) {
-                    // Clonar para no modificar la original
                     const clone = descEl.cloneNode(true);
+                    
+                    // Remover la imagen interna para evitar duplicados en el player
+                    const internalImg = clone.querySelector('.exercise-img');
+                    if (internalImg) internalImg.remove();
+
                     // Buscar input de peso si existe en el ejercicio
                     const inputEl = clone.querySelector('.weight-input');
                     if (inputEl) {
                         weightInputId = inputEl.id;
-                        // Remover el bloque de input de las instrucciones para ponerlo aparte limpio
                         const trackerBox = clone.querySelector('.weight-tracker');
                         if (trackerBox) trackerBox.remove();
                     }
@@ -865,7 +868,7 @@
             document.getElementById('tDetails').innerText = ex.details;
             document.getElementById('tInstructions').innerHTML = ex.instructionsHTML;
 
-            // Manejo de imagen
+            // Manejo de imagen limpia (sin duplicados)
             const imgElement = document.getElementById('tImg');
             if (ex.imgSrc && !ex.imgSrc.includes('undefined')) {
                 imgElement.src = ex.imgSrc;
@@ -881,16 +884,13 @@
             
             if (ex.weightInputId) {
                 weightBox.style.display = 'flex';
-                weightInput.id = ex.weightInputId; // Asignar el ID real para sincronizar
+                weightInput.id = ex.weightInputId;
                 
-                // Cargar valor guardado
                 const savedVal = localStorage.getItem(ex.weightInputId);
                 weightInput.value = savedVal ? savedVal : '';
 
-                // Escuchar cambios para guardar automático
                 weightInput.oninput = (e) => {
                     localStorage.setItem(ex.weightInputId, e.target.value);
-                    // Actualizar también en la vista clásica por si acaso
                     const classicInput = document.getElementById(ex.weightInputId);
                     if(classicInput && classicInput !== weightInput) classicInput.value = e.target.value;
                 };
