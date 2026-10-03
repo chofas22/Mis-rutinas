@@ -67,6 +67,177 @@
             letter-spacing: 1px;
         }
 
+        /* --- BOTÓN DE MODO ENTRENADOR CON VECTOR SVG --- */
+        .mode-toggle-btn {
+            background: linear-gradient(135deg, #e87c3e 0%, #ff9e5e 100%);
+            color: #050505;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(232, 124, 62, 0.3);
+            transition: transform 0.2s, background 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mode-toggle-btn:hover {
+            transform: scale(1.02);
+            background: linear-gradient(135deg, #ff8c4a 0%, #ffb076 100%);
+        }
+
+        .mode-toggle-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #050505;
+        }
+
+        /* --- MODO ENTRENADOR (PLAYER PASO A PASO) --- */
+        #trainer-mode-container {
+            display: none;
+            background-color: #1a1a1a;
+            border: 1px solid #e87c3e;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            margin-bottom: 25px;
+        }
+
+        .trainer-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .trainer-counter {
+            font-size: 0.8rem;
+            color: #e87c3e;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .exit-trainer-btn {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .exit-trainer-btn:hover { color: #fff; }
+
+        .trainer-exercise-title {
+            color: #e87c3e;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+        }
+
+        .trainer-exercise-subtitle {
+            font-size: 0.85rem;
+            color: #fff;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+
+        .trainer-exercise-details {
+            font-size: 0.78rem;
+            color: #ffa726;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 15px 0;
+            font-weight: 700;
+        }
+
+        .trainer-img {
+            width: 100%;
+            max-height: 260px;
+            object-fit: contain;
+            border-radius: 8px;
+            background-color: #111;
+            border: 1px solid #444;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .trainer-instructions {
+            font-size: 0.88rem;
+            color: #ccc;
+            line-height: 1.5;
+            background-color: #111;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin-bottom: 15px;
+        }
+        .trainer-instructions p { margin: 0 0 6px 0; }
+        .trainer-instructions p:last-child { margin-bottom: 0; }
+        .trainer-instructions strong { color: #e87c3e; }
+
+        .trainer-weight-box {
+            background-color: #222;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px dashed #555;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .trainer-weight-box label {
+            font-size: 0.85rem;
+            color: #e87c3e;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .trainer-nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-step-btn {
+            flex: 1;
+            background-color: #2a2a2a;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .nav-step-btn:hover {
+            background-color: #383838;
+            border-color: #e87c3e;
+        }
+        .nav-step-btn.primary {
+            background-color: #e87c3e;
+            color: #050505;
+            border-color: #e87c3e;
+        }
+        .nav-step-btn.primary:hover {
+            background-color: #ff8c4a;
+        }
+        /* ------------------------------------------------ */
+
         .section-title {
             color: #ffffff;
             font-size: 1rem;
@@ -123,7 +294,6 @@
             margin: 0;
         }
 
-        /* Imagen a tamaño completo sin recortes al revelar la tarjeta */
         .exercise-img {
             width: 100%;
             height: auto;
@@ -393,245 +563,283 @@
             <p>Duración: 45 min • Core Avanzado</p>
         </div>
 
-        <!-- 1. CALENTAMIENTO -->
-        <h3 class="section-title">1. Calentamiento (6 min)</h3>
+        <!-- Botón para alternar a Modo Entrenador -->
+        <button class="mode-toggle-btn" onclick="startTrainerMode()">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Iniciar Modo Entrenador
+        </button>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">ELEVACIÓN DE RODILLAS</p>
-                <p class="card-subtitle">MARCHA ACTIVA</p>
-                <p class="card-details">1 MINUTO X 1 SERIE</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Eleva suavemente las rodillas alternando en el sitio.</p>
-                    <p><strong>Para qué sirve:</strong> Activa el sistema cardiovascular y lubrica articulaciones.</p>
-                </div>
+        <!-- CONTENEDOR MODO ENTRENADOR PASO A PASO -->
+        <div id="trainer-mode-container">
+            <div class="trainer-top-bar">
+                <span class="trainer-counter" id="trainerCounter">Ejercicio 1 de 16</span>
+                <button class="exit-trainer-btn" onclick="exitTrainerMode()">✕ Ver Lista Completa</button>
+            </div>
+            
+            <h3 class="trainer-exercise-title" id="tTitle">TÍTULO</h3>
+            <p class="trainer-exercise-subtitle" id="tSubtitle">SUBTÍTULO</p>
+            <p class="trainer-exercise-details" id="tDetails">DETALLES</p>
+            
+            <img id="tImg" class="trainer-img" src="" alt="Ejercicio">
+            
+            <div class="trainer-instructions" id="tInstructions">
+                <!-- Instrucciones dinámicas -->
+            </div>
+
+            <!-- Input de peso opcional (si el ejercicio lo requiere) -->
+            <div class="trainer-weight-box" id="tWeightBox" style="display: none;">
+                <label for="tWeightInput">Carga Registrada:</label>
+                <input type="text" id="tWeightInput" class="weight-input" placeholder="Ej. 10 kg">
+            </div>
+
+            <div class="trainer-nav-buttons">
+                <button class="nav-step-btn" onclick="prevExercise()">← Anterior</button>
+                <button class="nav-step-btn primary" onclick="nextExercise()">Siguiente →</button>
             </div>
         </div>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">CÍRCULOS DE BRAZOS</p>
-                <p class="card-subtitle">MOVILIDAD DE HOMBROS</p>
-                <p class="card-details">1 MINUTO X 1 SERIE</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Haz círculos amplios con los brazos hacia adelante y atrás.</p>
-                    <p><strong>Para qué sirve:</strong> Prepara el manguito rotador y la parte superior.</p>
-                </div>
-            </div>
-        </div>
+        <!-- LISTA CLÁSICA DE EJERCICIOS -->
+        <div id="classic-list-container">
+            <!-- 1. CALENTAMIENTO -->
+            <h3 class="section-title">1. Calentamiento (6 min)</h3>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">SENTADILLAS CON GIRO</p>
-                <p class="card-subtitle">FLEXIÓN Y TORSO</p>
-                <p class="card-details">1 MINUTO X 1 SERIE</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Baja en sentadilla y gira el torso sutilmente al subir.</p>
-                    <p><strong>Para qué sirve:</strong> Activa piernas, glúteos y oblicuos simultáneamente.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">PLANCHA FRONTAL</p>
-                <p class="card-subtitle">FAJA ABDOMINAL</p>
-                <p class="card-details">1 MINUTO X 1 SERIE</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Apóyate en antebrazos contrayendo abdomen y glúteos en línea recta.</p>
-                    <p><strong>Para qué sirve:</strong> Despierta el abdomen profundo y estabiliza el core.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">BUENOS DÍAS SIN PESO</p>
-                <p class="card-subtitle">BISAGRA DE CADERA</p>
-                <p class="card-details">1 MINUTO X 1 SERIE</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Manos en la cabeza, empuja la cadera atrás manteniendo la espalda neutra.</p>
-                    <p><strong>Para qué sirve:</strong> Activa la cadena posterior y la zona lumbar.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">PASOS LATERALES DINÁMICOS</p>
-                <p class="card-subtitle">ELEVACIÓN TÉRMICA</p>
-                <p class="card-details">1 MINUTO X 1 SERIE</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Desplazamientos laterales rápidos y controlados.</p>
-                    <p><strong>Para qué sirve:</strong> Eleva la temperatura corporal al máximo antes del bloque principal.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. FUERZA Y CORE -->
-        <h3 class="section-title">2. Fuerza y Core Global (32 min)</h3>
-
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">DUMBBELL THRUSTER</p>
-                <p class="card-subtitle">Sentadilla con press vertical</p>
-                <p class="card-details">3 Series x 10 Reps</p>
-                <div class="card-description">
-                    <img src="Dumbbell_Thruster.jpeg" alt="Dumbbell Thruster" class="exercise-img">
-                    <p><strong>Movimiento:</strong> Haz una sentadilla profunda con mancuernas a los hombros y explota hacia arriba extendiendo los brazos.</p>
-                    <p><strong>Para qué sirve:</strong> Ejercicio global estrella que dispara el gasto calórico de todo el cuerpo.</p>
-                    
-                    <!-- Registro de Carga -->
-                    <div class="weight-tracker" onclick="event.stopPropagation()">
-                        <label for="w-vie-1">Carga Registrada:</label>
-                        <input type="text" id="w-vie-1" class="weight-input" placeholder="Ej. 10 kg">
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">ELEVACIÓN DE RODILLAS</p>
+                    <p class="card-subtitle">MARCHA ACTIVA</p>
+                    <p class="card-details">1 MINUTO X 1 SERIE</p>
+                    <div class="card-description">
+                        <p><strong>Movimiento:</strong> Eleva suavemente las rodillas alternando en el sitio.</p>
+                        <p><strong>Para qué sirve:</strong> Activa el sistema cardiovascular y lubrica articulaciones.</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">DUMBBELL RENEGADE ROW</p>
-                <p class="card-subtitle">Remo en plancha con mancuernas</p>
-                <p class="card-details">3 Series x 10 Reps (5 por lado)</p>
-                <div class="card-description">
-                    <img src="Dumbbell_Renegade_Row.jpeg" alt="Dumbbell Renegade Row" class="exercise-img">
-                    <p><strong>Movimiento:</strong> En posición de plancha alta sobre mancuernas, eleva una pesa hacia la cadera alternando sin girar el torso.</p>
-                    <p><strong>Para qué sirve:</strong> Fortalece espalda alta y brazos exigiendo máxima estabilidad de core.</p>
-
-                    <!-- Registro de Carga -->
-                    <div class="weight-tracker" onclick="event.stopPropagation()">
-                        <label for="w-vie-2">Carga Registrada:</label>
-                        <input type="text" id="w-vie-2" class="weight-input" placeholder="Ej. 7.5 kg">
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">CÍRCULOS DE BRAZOS</p>
+                    <p class="card-subtitle">MOVILIDAD DE HOMBROS</p>
+                    <p class="card-details">1 MINUTO X 1 SERIE</p>
+                    <div class="card-description">
+                        <p><strong>Movimiento:</strong> Haz círculos amplios con los brazos hacia adelante y atrás.</p>
+                        <p><strong>Para qué sirve:</strong> Prepara el manguito rotador y la parte superior.</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">DUMBBELL FLOOR PRESS</p>
-                <p class="card-subtitle">Press de pecho en suelo</p>
-                <p class="card-details">3 Series x 10 Reps</p>
-                <div class="card-description">
-                    <img src="Dumbbell_Floor_Press.jpeg" alt="Dumbbell Floor Press" class="exercise-img">
-                    <p><strong>Movimiento:</strong> Acostada en el suelo, empuja las mancuernas hacia arriba extendiendo los brazos y baja hasta que los codos toquen suavemente el piso.</p>
-                    <p><strong>Para qué sirve:</strong> Trabaja pectoral, hombros y tríceps de manera segura protegiendo los hombros.</p>
-
-                    <!-- Registro de Carga -->
-                    <div class="weight-tracker" onclick="event.stopPropagation()">
-                        <label for="w-vie-3">Carga Registrada:</label>
-                        <input type="text" id="w-vie-3" class="weight-input" placeholder="Ej. 15 kg">
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">SENTADILLAS CON GIRO</p>
+                    <p class="card-subtitle">FLEXIÓN Y TORSO</p>
+                    <p class="card-details">1 MINUTO X 1 SERIE</p>
+                    <div class="card-description">
+                        <p><strong>Movimiento:</strong> Baja en sentadilla y gira el torso sutilmente al subir.</p>
+                        <p><strong>Para qué sirve:</strong> Activa piernas, glúteos y oblicuos simultáneamente.</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">ALTERNATING REVERSE LUNGES</p>
-                <p class="card-subtitle">Desplantes hacia atrás</p>
-                <p class="card-details">2 Series x 12 Reps (6 por pierna)</p>
-                <div class="card-description">
-                    <img src="Alternating_Reverse_Lunges.jpeg" alt="Alternating Reverse Lunges" class="exercise-img">
-                    <p><strong>Movimiento:</strong> Da un paso atrás bajando la rodilla de forma controlada.</p>
-                    <p><strong>Para qué sirve:</strong> Esculpe cuádriceps y glúteos protegiendo las articulaciones de la rodilla.</p>
-
-                    <!-- Registro de Carga -->
-                    <div class="weight-tracker" onclick="event.stopPropagation()">
-                        <label for="w-vie-4">Carga Registrada:</label>
-                        <input type="text" id="w-vie-4" class="weight-input" placeholder="Ej. 10 kg">
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">PLANCHA FRONTAL</p>
+                    <p class="card-subtitle">FAJA ABDOMINAL</p>
+                    <p class="card-details">1 MINUTO X 1 SERIE</p>
+                    <div class="card-description">
+                        <p><strong>Movimiento:</strong> Apóyate en antebrazos contrayendo abdomen y glúteos en línea recta.</p>
+                        <p><strong>Para qué sirve:</strong> Despierta el abdomen profundo y estabiliza el core.</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">BICYCLE CRUNCHES</p>
-                <p class="card-subtitle">Abdominales de bicicleta</p>
-                <p class="card-details">2 Series x 20 Reps (10 por lado)</p>
-                <div class="card-description">
-                    <img src="Bicycle_Crunches.jpeg" alt="Bicycle Crunches" class="exercise-img">
-                    <p><strong>Movimiento:</strong> Tumbada boca arriba, lleva el codo contrario a la rodilla en movimiento de pedaleo.</p>
-                    <p><strong>Para qué sirve:</strong> Activación total del recto abdominal y los oblicuos.</p>
-
-                    <!-- Registro de Carga -->
-                    <div class="weight-tracker" onclick="event.stopPropagation()">
-                        <label for="w-vie-5">Carga Registrada:</label>
-                        <input type="text" id="w-vie-5" class="weight-input" placeholder="Ej. 5 kg">
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">BUENOS DÍAS SIN PESO</p>
+                    <p class="card-subtitle">BISAGRA DE CADERA</p>
+                    <p class="card-details">1 MINUTO X 1 SERIE</p>
+                    <div class="card-description">
+                        <p><strong>Movimiento:</strong> Manos en la cabeza, empuja la cadera atrás manteniendo la espalda neutra.</p>
+                        <p><strong>Para qué sirve:</strong> Activa la cadena posterior y la zona lumbar.</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">RUSSIAN TWISTS</p>
-                <p class="card-subtitle">Giros rusos con peso</p>
-                <p class="card-details">2 Series x 20 Reps</p>
-                <div class="card-description">
-                    <img src="Russian_Twists.jpeg" alt="Russian Twists" class="exercise-img">
-                    <p><strong>Movimiento:</strong> Con el torso inclinado hacia atrás, gira el peso de lado a lado tocando el suelo.</p>
-                    <p><strong>Para qué sirve:</strong> Define la cintura y potencia la fuerza rotacional del core.</p>
-
-                    <!-- Registro de Carga -->
-                    <div class="weight-tracker" onclick="event.stopPropagation()">
-                        <label for="w-vie-6">Carga Registrada:</label>
-                        <input type="text" id="w-vie-6" class="weight-input" placeholder="Ej. 5 kg">
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">PASOS LATERALES DINÁMICOS</p>
+                    <p class="card-subtitle">ELEVACIÓN TÉRMICA</p>
+                    <p class="card-details">1 MINUTO X 1 SERIE</p>
+                    <div class="card-description">
+                        <p><strong>Movimiento:</strong> Desplazamientos laterales rápidos y controlados.</p>
+                        <p><strong>Para qué sirve:</strong> Eleva la temperatura corporal al máximo antes del bloque principal.</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 3. ESTIRAMIENTOS Y VUELTA A LA CALMA -->
-        <h3 class="section-title">3. Vuelta a la Calma (7 min)</h3>
+            <!-- 2. FUERZA Y CORE -->
+            <h3 class="section-title">2. Fuerza y Core Global (32 min)</h3>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">FULL BODY OVERHEAD STRETCH</p>
-                <p class="card-subtitle">Estiramiento global de pie</p>
-                <p class="card-details">1 Minuto</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Entrelaza los dedos y estira los brazos hacia el cielo alargando todo el cuerpo.</p>
-                    <p><strong>Para qué sirve:</strong> Libera la tensión acumulada tras los ejercicios compuestos.</p>
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">DUMBBELL THRUSTER</p>
+                    <p class="card-subtitle">Sentadilla con press vertical</p>
+                    <p class="card-details">3 Series x 10 Reps</p>
+                    <div class="card-description">
+                        <img src="Dumbbell_Thruster.jpeg" alt="Dumbbell Thruster" class="exercise-img">
+                        <p><strong>Movimiento:</strong> Haz una sentadilla profunda con mancuernas a los hombros y explota hacia arriba extendiendo los brazos.</p>
+                        <p><strong>Para qué sirve:</strong> Ejercicio global estrella que dispara el gasto calórico de todo el cuerpo.</p>
+                        
+                        <!-- Registro de Carga -->
+                        <div class="weight-tracker" onclick="event.stopPropagation()">
+                            <label for="w-vie-1">Carga Registrada:</label>
+                            <input type="text" id="w-vie-1" class="weight-input" placeholder="Ej. 10 kg">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">CAT-COW STRETCH</p>
-                <p class="card-subtitle">Postura de Gato-Vaca</p>
-                <p class="card-details">1 Minuto</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> En cuatro puntos, arquea y hunde la espalda alternadamente.</p>
-                    <p><strong>Para qué sirve:</strong> Moviliza y relaja toda la columna vertebral.</p>
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">DUMBBELL RENEGADE ROW</p>
+                    <p class="card-subtitle">Remo en plancha con mancuernas</p>
+                    <p class="card-details">3 Series x 10 Reps (5 por lado)</p>
+                    <div class="card-description">
+                        <img src="Dumbbell_Renegade_Row.jpeg" alt="Dumbbell Renegade Row" class="exercise-img">
+                        <p><strong>Movimiento:</strong> En posición de plancha alta sobre mancuernas, eleva una pesa hacia la cadera alternando sin girar el torso.</p>
+                        <p><strong>Para qué sirve:</strong> Fortalece espalda alta y brazos exigiendo máxima estabilidad de core.</p>
+
+                        <!-- Registro de Carga -->
+                        <div class="weight-tracker" onclick="event.stopPropagation()">
+                            <label for="w-vie-2">Carga Registrada:</label>
+                            <input type="text" id="w-vie-2" class="weight-input" placeholder="Ej. 7.5 kg">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">HIP FLEXOR & QUAD STRETCH</p>
-                <p class="card-subtitle">Estiramiento de cuádriceps y cadera</p>
-                <p class="card-details">1 Minuto por pierna</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Lleva el talón hacia el glúteo de pie o apoyada en la rodilla.</p>
-                    <p><strong>Para qué sirve:</strong> Alivia la tensión en la parte frontal de los muslos.</p>
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">DUMBBELL FLOOR PRESS</p>
+                    <p class="card-subtitle">Press de pecho en suelo</p>
+                    <p class="card-details">3 Series x 10 Reps</p>
+                    <div class="card-description">
+                        <img src="Dumbbell_Floor_Press.jpeg" alt="Dumbbell Floor Press" class="exercise-img">
+                        <p><strong>Movimiento:</strong> Acostada en el suelo, empuja las mancuernas hacia arriba extendiendo los brazos y baja hasta que los codos toquen suavemente el piso.</p>
+                        <p><strong>Para qué sirve:</strong> Trabaja pectoral, hombros y tríceps de manera segura protegiendo los hombros.</p>
+
+                        <!-- Registro de Carga -->
+                        <div class="weight-tracker" onclick="event.stopPropagation()">
+                            <label for="w-vie-3">Carga Registrada:</label>
+                            <input type="text" id="w-vie-3" class="weight-input" placeholder="Ej. 15 kg">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="exercise-card" onclick="toggleCard(this)">
-            <div class="card-content">
-                <p class="card-title">CHILD'S POSE</p>
-                <p class="card-subtitle">Postura del niño extendida</p>
-                <p class="card-details">2 Minutos</p>
-                <div class="card-description">
-                    <p><strong>Movimiento:</strong> Siéntate sobre los talones estirando los brazos al frente sobre el piso.</p>
-                    <p><strong>Para qué sirve:</strong> Relaja por completo la espalda, hombros y zona lumbar, cerrando la semana.</p>
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">ALTERNATING REVERSE LUNGES</p>
+                    <p class="card-subtitle">Desplantes hacia atrás</p>
+                    <p class="card-details">2 Series x 12 Reps (6 por pierna)</p>
+                    <div class="card-description">
+                        <img src="Alternating_Reverse_Lunges.jpeg" alt="Alternating Reverse Lunges" class="exercise-img">
+                        <p><strong>Movimiento:</strong> Da un paso atrás bajando la rodilla de forma controlada.</p>
+                        <p><strong>Para qué sirve:</strong> Esculpe cuádriceps y glúteos protegiendo las articulaciones de la rodilla.</p>
+
+                        <!-- Registro de Carga -->
+                        <div class="weight-tracker" onclick="event.stopPropagation()">
+                            <label for="w-vie-4">Carga Registrada:</label>
+                            <input type="text" id="w-vie-4" class="weight-input" placeholder="Ej. 10 kg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">BICYCLE CRUNCHES</p>
+                    <p class="card-subtitle">Abdominales de bicicleta</p>
+                    <p class="card-details">2 Series x 20 Reps (10 por lado)</p>
+                    <div class="card-description">
+                        <img src="Bicycle_Crunches.jpeg" alt="Bicycle Crunches" class="exercise-img">
+                        <p><strong>Movimiento:</strong> Tumbada boca arriba, lleva el codo contrario a la rodilla en movimiento de pedaleo.</p>
+                        <p><strong>Para qué sirve:</strong> Activación total del recto abdominal y los oblicuos.</p>
+
+                        <!-- Registro de Carga -->
+                        <div class="weight-tracker" onclick="event.stopPropagation()">
+                            <label for="w-vie-5">Carga Registrada:</label>
+                            <input type="text" id="w-vie-5" class="weight-input" placeholder="Ej. 5 kg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">RUSSIAN TWISTS</p>
+                    <p class="card-subtitle">Giros rusos con peso</p>
+                    <p class="card-details">2 Series x 20 Reps</p>
+                    <div class="card-description">
+                        <img src="Russian_Twists.jpeg" alt="Russian Twists" class="exercise-img">
+                        <p><strong>Movimiento:</strong> Con el torso inclinado hacia atrás, gira el peso de lado a lado tocando el suelo.</p>
+                        <p><strong>Para qué sirve:</strong> Define la cintura y potencia la fuerza rotacional del core.</p>
+
+                        <!-- Registro de Carga -->
+                        <div class="weight-tracker" onclick="event.stopPropagation()">
+                            <label for="w-vie-6">Carga Registrada:</label>
+                            <input type="text" id="w-vie-6" class="weight-input" placeholder="Ej. 5 kg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. ESTIRAMIENTOS Y VUELTA A LA CALMA -->
+            <h3 class="section-title">3. Vuelta a la Calma (7 min)</h3>
+
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">FULL BODY OVERHEAD STRETCH</p>
+                    <p class="card-subtitle">Estiramiento global de pie</p>
+                    <p class="card-details">1 Minuto</p>
+                    <div class="card-description">
+                        <p><strong>Movimiento:</strong> Entrelaza los dedos y estira los brazos hacia el cielo alargando todo el cuerpo.</p>
+                        <p><strong>Para qué sirve:</strong> Libera la tensión acumulada tras los ejercicios compuestos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">CAT-COW STRETCH</p>
+                    <p class="card-subtitle">Postura de Gato-Vaca</p>
+                    <p class="card-details">1 Minuto</p>
+                    <div class="card-description">
+                        <p><strong>Movimiento:</strong> En cuatro puntos, arquea y hunde la espalda alternadamente.</p>
+                        <p><strong>Para qué sirve:</strong> Moviliza y relaja toda la columna vertebral.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">HIP FLEXOR & QUAD STRETCH</p>
+                    <p class="card-subtitle">Estiramiento de cuádriceps y cadera</p>
+                    <p class="card-details">1 Minuto por pierna</p>
+                    <div class="card-description">
+                        <p><strong>Movimiento:</strong> Lleva el talón hacia el glúteo de pie o apoyada en la rodilla.</p>
+                        <p><strong>Para qué sirve:</strong> Alivia la tensión en la parte frontal de los muslos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise-card" onclick="toggleCard(this)">
+                <div class="card-content">
+                    <p class="card-title">CHILD'S POSE</p>
+                    <p class="card-subtitle">Postura del niño extendida</p>
+                    <p class="card-details">2 Minutos</p>
+                    <div class="card-description">
+                        <p><strong>Movimiento:</strong> Siéntate sobre los talones estirando los brazos al frente sobre el piso.</p>
+                        <p><strong>Para qué sirve:</strong> Relaja por completo la espalda, hombros y zona lumbar, cerrando la semana.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -701,11 +909,131 @@
     <script>
         // Funcionalidad de las tarjetas
         function toggleCard(card) {
-            // Cierra todas las tarjetas activas antes de abrir otra
             document.querySelectorAll('.exercise-card.active').forEach(c => {
                 if(c !== card) c.classList.remove('active');
             });
             card.classList.toggle('active');
+        }
+
+        // --- LÓGICA DEL MODO ENTRENADOR ---
+        let currentExerciseIndex = 0;
+        let exerciseList = [];
+
+        function initTrainerData() {
+            const cards = document.querySelectorAll('#classic-list-container .exercise-card');
+            exerciseList = Array.from(cards).map(card => {
+                const title = card.querySelector('.card-title').innerText;
+                const subtitle = card.querySelector('.card-subtitle').innerText;
+                const details = card.querySelector('.card-details').innerText;
+                
+                const imgEl = card.querySelector('.exercise-img');
+                const imgSrc = imgEl ? imgEl.src : null;
+                const imgAlt = imgEl ? imgEl.alt : '';
+
+                const descEl = card.querySelector('.card-description');
+                let instructionsHTML = '';
+                let weightInputId = null;
+
+                if (descEl) {
+                    const clone = descEl.cloneNode(true);
+                    const internalImg = clone.querySelector('.exercise-img');
+                    if (internalImg) internalImg.remove();
+
+                    const inputEl = clone.querySelector('.weight-input');
+                    if (inputEl) {
+                        weightInputId = inputEl.id;
+                        const trackerBox = clone.querySelector('.weight-tracker');
+                        if (trackerBox) trackerBox.remove();
+                    }
+                    instructionsHTML = clone.innerHTML;
+                }
+
+                return {
+                    title,
+                    subtitle,
+                    details,
+                    imgSrc,
+                    imgAlt,
+                    instructionsHTML,
+                    weightInputId
+                };
+            });
+        }
+
+        function startTrainerMode() {
+            initTrainerData();
+            if(exerciseList.length === 0) return;
+            currentExerciseIndex = 0;
+            
+            document.getElementById('classic-list-container').style.display = 'none';
+            document.querySelector('.mode-toggle-btn').style.display = 'none';
+            document.getElementById('trainer-mode-container').style.display = 'block';
+            
+            renderTrainerStep();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function exitTrainerMode() {
+            document.getElementById('trainer-mode-container').style.display = 'none';
+            document.getElementById('classic-list-container').style.display = 'block';
+            document.querySelector('.mode-toggle-btn').style.display = 'block';
+        }
+
+        function renderTrainerStep() {
+            const ex = exerciseList[currentExerciseIndex];
+            
+            document.getElementById('trainerCounter').innerText = `Ejercicio ${currentExerciseIndex + 1} de ${exerciseList.length}`;
+            document.getElementById('tTitle').innerText = ex.title;
+            document.getElementById('tSubtitle').innerText = ex.subtitle;
+            document.getElementById('tDetails').innerText = ex.details;
+            document.getElementById('tInstructions').innerHTML = ex.instructionsHTML;
+
+            const imgElement = document.getElementById('tImg');
+            if (ex.imgSrc && !ex.imgSrc.includes('undefined')) {
+                imgElement.src = ex.imgSrc;
+                imgElement.alt = ex.imgAlt;
+                imgElement.style.display = 'block';
+            } else {
+                imgElement.style.display = 'none';
+            }
+
+            const weightBox = document.getElementById('tWeightBox');
+            const weightInput = document.getElementById('tWeightInput');
+            
+            if (ex.weightInputId) {
+                weightBox.style.display = 'flex';
+                weightInput.id = ex.weightInputId;
+                
+                const savedVal = localStorage.getItem(ex.weightInputId);
+                weightInput.value = savedVal ? savedVal : '';
+
+                weightInput.oninput = (e) => {
+                    localStorage.setItem(ex.weightInputId, e.target.value);
+                    const classicInput = document.getElementById(ex.weightInputId);
+                    if(classicInput && classicInput !== weightInput) classicInput.value = e.target.value;
+                };
+            } else {
+                weightBox.style.display = 'none';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextExercise() {
+            if (currentExerciseIndex < exerciseList.length - 1) {
+                currentExerciseIndex++;
+                renderTrainerStep();
+            } else {
+                alert('¡Felicidades! Has completado todos los ejercicios de tu rutina de viernes. 🎉');
+                exitTrainerMode();
+            }
+        }
+
+        function prevExercise() {
+            if (currentExerciseIndex > 0) {
+                currentExerciseIndex--;
+                renderTrainerStep();
+            }
         }
 
         // LÓGICA DE REGISTRO DE PESO
@@ -713,13 +1041,11 @@
             const weightInputs = document.querySelectorAll('.weight-input');
             
             weightInputs.forEach(input => {
-                // Cargar el peso guardado previamente
                 const savedWeight = localStorage.getItem(input.id);
                 if(savedWeight) {
                     input.value = savedWeight;
                 }
 
-                // Guardar automáticamente mientras escribes
                 input.addEventListener('input', (e) => {
                     localStorage.setItem(e.target.id, e.target.value);
                 });
