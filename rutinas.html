@@ -38,7 +38,7 @@
 
         .header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             padding: 15px 0;
             border-bottom: 1px solid #222;
         }
@@ -67,6 +67,54 @@
             letter-spacing: 1px;
         }
 
+        /* --- SECCIÓN DE PROGRESO --- */
+        .progress-container {
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 25px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .streak-info {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ffa726;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .progress-text {
+            font-size: 0.8rem;
+            color: #ccc;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .progress-bar-bg {
+            background-color: #222;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .progress-bar-fill {
+            background-color: #e87c3e;
+            height: 100%;
+            width: 0%; /* Se actualiza con JS */
+            transition: width 0.4s ease;
+        }
+        /* --------------------------- */
+
         .section-title {
             color: #ffffff;
             font-size: 1rem;
@@ -76,14 +124,59 @@
             padding-left: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Contenedor para integrar el botón de check y la tarjeta */
+        .day-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .check-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #444;
+            background-color: transparent;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .check-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: #050505;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .check-btn.checked {
+            background-color: #e87c3e;
+            border-color: #e87c3e;
+        }
+
+        .check-btn.checked svg {
+            opacity: 1;
         }
 
         .day-card {
             background-color: #2a2a2a;
             border: 1px solid #444;
             border-radius: 12px;
-            padding: 18px 20px;
-            margin-bottom: 12px;
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -91,6 +184,7 @@
             color: #ffffff;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             transition: all 0.2s ease;
+            flex: 1;
         }
 
         .day-card:hover {
@@ -115,25 +209,49 @@
             margin: 0;
         }
 
-        .day-card.locked {
-            background-color: #161616;
-            border-color: #222;
-            opacity: 0.5;
-            pointer-events: none;
+        .day-wrapper.completed .day-card {
+            opacity: 0.6;
+            border-color: #333;
+            background-color: #1a1a1a;
         }
 
-        .day-card.locked .day-info h3 {
-            color: #777;
+        .day-wrapper.completed .day-info h3 {
+            color: #888;
+            text-decoration: line-through;
         }
 
         .arrow {
             color: #e87c3e;
             font-weight: bold;
             font-size: 1.2rem;
+            transition: color 0.2s;
         }
 
-        .day-card.locked .arrow {
-            color: #444;
+        .day-wrapper.completed .arrow {
+            color: #555;
+        }
+
+        /* Botón de reset */
+        .reset-btn {
+            background: none;
+            border: 1px solid #444;
+            color: #888;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.2s;
+        }
+
+        .reset-btn:hover {
+            background-color: #1a1a1a;
+            color: #fff;
+            border-color: #666;
         }
     </style>
 </head>
@@ -149,54 +267,178 @@
             <p>Recomposición Corporal • 5 Días</p>
         </div>
 
+        <!-- Módulo de Progreso y Racha -->
+        <div class="progress-container">
+            <div class="progress-header">
+                <div class="streak-info">🔥 Racha: <span id="streak-count">0</span> semanas</div>
+                <div class="progress-text" id="progress-text">0/5 Días Completados</div>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
         <h3 class="section-title">Selecciona tu rutina</h3>
 
         <!-- Lunes -->
-        <a href="lunes.html" class="day-card active">
-            <div class="day-info">
-                <h3>Lunes</h3>
-                <p>Upper Body & Core + Flexibilidad</p>
-            </div>
-            <div class="arrow">→</div>
-        </a>
+        <div class="day-wrapper" id="wrap-lunes">
+            <button class="check-btn" id="btn-lunes" onclick="toggleDay('lunes')" title="Marcar como completado">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </button>
+            <a href="lunes.html" class="day-card active">
+                <div class="day-info">
+                    <h3>Lunes</h3>
+                    <p>Upper Body & Core + Flexibilidad</p>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+        </div>
 
         <!-- Martes -->
-        <a href="martes.html" class="day-card active">
-            <div class="day-info">
-                <h3>Martes</h3>
-                <p>Natación y Cardio Metabólico</p>
-            </div>
-            <div class="arrow">→</div>
-        </a>
+        <div class="day-wrapper" id="wrap-martes">
+            <button class="check-btn" id="btn-martes" onclick="toggleDay('martes')" title="Marcar como completado">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </button>
+            <a href="martes.html" class="day-card active">
+                <div class="day-info">
+                    <h3>Martes</h3>
+                    <p>Natación y Cardio Metabólico</p>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+        </div>
 
         <!-- Miércoles -->
-        <a href="miercoles.html" class="day-card active">
-            <div class="day-info">
-                <h3>Miércoles</h3>
-                <p>Lower Body & Glúteos</p>
-            </div>
-            <div class="arrow">→</div>
-        </a>
+        <div class="day-wrapper" id="wrap-miercoles">
+            <button class="check-btn" id="btn-miercoles" onclick="toggleDay('miercoles')" title="Marcar como completado">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </button>
+            <a href="miercoles.html" class="day-card active">
+                <div class="day-info">
+                    <h3>Miércoles</h3>
+                    <p>Lower Body & Glúteos</p>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+        </div>
 
         <!-- Jueves -->
-        <a href="jueves.html" class="day-card active">
-            <div class="day-info">
-                <h3>Jueves</h3>
-                <p>Natación y Resistencia</p>
-            </div>
-            <div class="arrow">→</div>
-        </a>
+        <div class="day-wrapper" id="wrap-jueves">
+            <button class="check-btn" id="btn-jueves" onclick="toggleDay('jueves')" title="Marcar como completado">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </button>
+            <a href="jueves.html" class="day-card active">
+                <div class="day-info">
+                    <h3>Jueves</h3>
+                    <p>Natación y Resistencia</p>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+        </div>
 
         <!-- Viernes -->
-        <a href="viernes.html" class="day-card active">
-            <div class="day-info">
-                <h3>Viernes</h3>
-                <p>Full Body & Core Avanzado</p>
-            </div>
-            <div class="arrow">→</div>
-        </a>
+        <div class="day-wrapper" id="wrap-viernes">
+            <button class="check-btn" id="btn-viernes" onclick="toggleDay('viernes')" title="Marcar como completado">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </button>
+            <a href="viernes.html" class="day-card active">
+                <div class="day-info">
+                    <h3>Viernes</h3>
+                    <p>Full Body & Core Avanzado</p>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+        </div>
+
+        <button class="reset-btn" onclick="resetWeek()">↻ Reiniciar Semana (Domingo)</button>
 
     </div>
 
+    <!-- Lógica de Progreso y LocalStorage -->
+    <script>
+        const days = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes'];
+
+        function initProgress() {
+            let completedDays = JSON.parse(localStorage.getItem('completedDays')) || {};
+            let streak = parseInt(localStorage.getItem('streakCount')) || 0;
+
+            document.getElementById('streak-count').innerText = streak;
+
+            let count = 0;
+            days.forEach(day => {
+                const btn = document.getElementById(`btn-${day}`);
+                const wrap = document.getElementById(`wrap-${day}`);
+                
+                if (completedDays[day]) {
+                    btn.classList.add('checked');
+                    wrap.classList.add('completed');
+                    count++;
+                } else {
+                    btn.classList.remove('checked');
+                    wrap.classList.remove('completed');
+                }
+            });
+
+            updateProgressVisuals(count);
+        }
+
+        function toggleDay(day) {
+            let completedDays = JSON.parse(localStorage.getItem('completedDays')) || {};
+            
+            // Alternar estado
+            completedDays[day] = !completedDays[day];
+            localStorage.setItem('completedDays', JSON.stringify(completedDays));
+
+            // Actualizar vista local sin recargar
+            const btn = document.getElementById(`btn-${day}`);
+            const wrap = document.getElementById(`wrap-${day}`);
+            
+            if (completedDays[day]) {
+                btn.classList.add('checked');
+                wrap.classList.add('completed');
+            } else {
+                btn.classList.remove('checked');
+                wrap.classList.remove('completed');
+            }
+
+            // Recalcular
+            let count = Object.values(completedDays).filter(Boolean).length;
+            updateProgressVisuals(count);
+        }
+
+        function updateProgressVisuals(count) {
+            document.getElementById('progress-text').innerText = `${count}/5 Días Completados`;
+            let percentage = (count / 5) * 100;
+            document.getElementById('progress-fill').style.width = `${percentage}%`;
+        }
+
+        function resetWeek() {
+            if(confirm('¿Seguro que quieres reiniciar la semana? Asegúrate de hacerlo el fin de semana.')) {
+                let completedDays = JSON.parse(localStorage.getItem('completedDays')) || {};
+                let count = Object.values(completedDays).filter(Boolean).length;
+                
+                let streak = parseInt(localStorage.getItem('streakCount')) || 0;
+
+                // Si completaste los 5 días, sumas 1 semana a tu racha de fuego
+                if (count === 5) {
+                    streak++;
+                    localStorage.setItem('streakCount', streak);
+                    alert('¡Felicidades! Sumaste una semana perfecta a tu racha. 🔥');
+                } else if (count > 0 && count < 5) {
+                    // Si no completaste los 5, la racha se reinicia a 0
+                    streak = 0;
+                    localStorage.setItem('streakCount', streak);
+                    alert('Semana reiniciada. Tu racha vuelve a 0, ¡a darle con todo la próxima semana!');
+                }
+
+                // Borramos los días de la memoria
+                localStorage.setItem('completedDays', JSON.stringify({}));
+                initProgress();
+            }
+        }
+
+        // Ejecutar al cargar la página
+        document.addEventListener('DOMContentLoaded', initProgress);
+    </script>
 </body>
 </html>
