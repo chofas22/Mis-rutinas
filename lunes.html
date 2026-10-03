@@ -67,7 +67,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- BOTÓN DE MODO ENTRENADOR EN CABECERA --- */
+        /* --- BOTÓN DE MODO ENTRENADOR CON VECTOR SVG --- */
         .mode-toggle-btn {
             background: linear-gradient(135deg, #e87c3e 0%, #ff9e5e 100%);
             color: #050505;
@@ -83,11 +83,21 @@
             margin-bottom: 25px;
             box-shadow: 0 4px 12px rgba(232, 124, 62, 0.3);
             transition: transform 0.2s, background 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
 
         .mode-toggle-btn:hover {
             transform: scale(1.02);
             background: linear-gradient(135deg, #ff8c4a 0%, #ffb076 100%);
+        }
+
+        .mode-toggle-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: #050505;
         }
 
         /* --- MODO ENTRENADOR (PLAYER PASO A PASO) --- */
@@ -433,7 +443,7 @@
 <body>
 
     <div class="app-container">
-        <a href="rutinas.html" class="back-btn">← Volver al Rutinas</a>
+        <a href="rutinas.html" class="back-btn">← Volver a Rutinas</a>
 
         <div class="header">
             <h2>LUNES</h2>
@@ -441,8 +451,11 @@
             <p>Duración: 45 min • Intensidad Controlada</p>
         </div>
 
-        <!-- Botón para alternar a Modo Entrenador -->
-        <button class="mode-toggle-btn" onclick="startTrainerMode()">▶ Iniciar Modo Entrenador</button>
+        <!-- Botón para alternar a Modo Entrenador con Vector SVG -->
+        <button class="mode-toggle-btn" onclick="startTrainerMode()">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Iniciar Modo Entrenador
+        </button>
 
         <!-- CONTENEDOR MODO ENTRENADOR PASO A PASO -->
         <div id="trainer-mode-container">
@@ -783,7 +796,6 @@
 
     <!-- SCRIPTS -->
     <script>
-        // Funcionalidad de las tarjetas en lista clásica
         function toggleCard(card) {
             document.querySelectorAll('.exercise-card.active').forEach(c => {
                 if(c !== card) c.classList.remove('active');
@@ -791,7 +803,6 @@
             card.classList.toggle('active');
         }
 
-        // --- LÓGICA DEL MODO ENTRENADOR ---
         let currentExerciseIndex = 0;
         let exerciseList = [];
 
@@ -806,19 +817,15 @@
                 const imgSrc = imgEl ? imgEl.src : null;
                 const imgAlt = imgEl ? imgEl.alt : '';
 
-                // Extraer descripciones HTML internas sin duplicar la imagen
                 const descEl = card.querySelector('.card-description');
                 let instructionsHTML = '';
                 let weightInputId = null;
 
                 if (descEl) {
                     const clone = descEl.cloneNode(true);
-                    
-                    // Remover la imagen interna para evitar duplicados en el player
                     const internalImg = clone.querySelector('.exercise-img');
                     if (internalImg) internalImg.remove();
 
-                    // Buscar input de peso si existe en el ejercicio
                     const inputEl = clone.querySelector('.weight-input');
                     if (inputEl) {
                         weightInputId = inputEl.id;
@@ -868,7 +875,6 @@
             document.getElementById('tDetails').innerText = ex.details;
             document.getElementById('tInstructions').innerHTML = ex.instructionsHTML;
 
-            // Manejo de imagen limpia (sin duplicados)
             const imgElement = document.getElementById('tImg');
             if (ex.imgSrc && !ex.imgSrc.includes('undefined')) {
                 imgElement.src = ex.imgSrc;
@@ -878,7 +884,6 @@
                 imgElement.style.display = 'none';
             }
 
-            // Manejo del campo de peso sincronizado con localStorage
             const weightBox = document.getElementById('tWeightBox');
             const weightInput = document.getElementById('tWeightInput');
             
@@ -918,7 +923,6 @@
             }
         }
 
-        // LÓGICA DE REGISTRO DE PESO EN VISTA CLÁSICA
         document.addEventListener('DOMContentLoaded', () => {
             const weightInputs = document.querySelectorAll('.weight-input');
             
@@ -934,9 +938,6 @@
             });
         });
 
-        // ------------------
-        // LÓGICA DEL TEMPORIZADOR
-        // ------------------
         let audioCtx = null;
         function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
         function playTone(frequency, duration, type = 'sine') {
