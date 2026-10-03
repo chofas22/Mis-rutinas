@@ -158,6 +158,47 @@
             display: block;
         }
 
+        /* --- ESTILOS DEL REGISTRO DE PESO --- */
+        .weight-tracker {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px dashed #555;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #222;
+            padding: 10px 12px;
+            border-radius: 8px;
+        }
+
+        .weight-tracker label {
+            font-size: 0.85rem;
+            color: #e87c3e;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .weight-input {
+            background-color: #111;
+            border: 1px solid #e87c3e;
+            border-radius: 6px;
+            color: #fff;
+            padding: 8px;
+            width: 100px;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: border-color 0.2s ease;
+        }
+
+        .weight-input:focus {
+            outline: none;
+            border-color: #ffa726;
+            background-color: #1a1a1a;
+        }
+        /* ------------------------------------ */
+
         /* Estilos del Temporizador Flotante Avanzado */
         #timer-bubble {
             position: fixed;
@@ -439,6 +480,12 @@
                     <img src="Dumbbell_Thruster.jpeg" alt="Dumbbell Thruster" class="exercise-img">
                     <p><strong>Movimiento:</strong> Haz una sentadilla profunda con mancuernas a los hombros y explota hacia arriba extendiendo los brazos.</p>
                     <p><strong>Para qué sirve:</strong> Ejercicio global estrella que dispara el gasto calórico de todo el cuerpo.</p>
+                    
+                    <!-- Registro de Carga -->
+                    <div class="weight-tracker" onclick="event.stopPropagation()">
+                        <label for="w-vie-1">Carga Registrada:</label>
+                        <input type="text" id="w-vie-1" class="weight-input" placeholder="Ej. 10 kg">
+                    </div>
                 </div>
             </div>
         </div>
@@ -452,6 +499,12 @@
                     <img src="Dumbbell_Renegade_Row.jpeg" alt="Dumbbell Renegade Row" class="exercise-img">
                     <p><strong>Movimiento:</strong> En posición de plancha alta sobre mancuernas, eleva una pesa hacia la cadera alternando sin girar el torso.</p>
                     <p><strong>Para qué sirve:</strong> Fortalece espalda alta y brazos exigiendo máxima estabilidad de core.</p>
+
+                    <!-- Registro de Carga -->
+                    <div class="weight-tracker" onclick="event.stopPropagation()">
+                        <label for="w-vie-2">Carga Registrada:</label>
+                        <input type="text" id="w-vie-2" class="weight-input" placeholder="Ej. 7.5 kg">
+                    </div>
                 </div>
             </div>
         </div>
@@ -465,6 +518,12 @@
                     <img src="Dumbbell_Floor_Press.jpeg" alt="Dumbbell Floor Press" class="exercise-img">
                     <p><strong>Movimiento:</strong> Acostada en el suelo, empuja las mancuernas hacia arriba extendiendo los brazos y baja hasta que los codos toquen suavemente el piso.</p>
                     <p><strong>Para qué sirve:</strong> Trabaja pectoral, hombros y tríceps de manera segura protegiendo los hombros.</p>
+
+                    <!-- Registro de Carga -->
+                    <div class="weight-tracker" onclick="event.stopPropagation()">
+                        <label for="w-vie-3">Carga Registrada:</label>
+                        <input type="text" id="w-vie-3" class="weight-input" placeholder="Ej. 15 kg">
+                    </div>
                 </div>
             </div>
         </div>
@@ -478,6 +537,12 @@
                     <img src="Alternating_Reverse_Lunges.jpeg" alt="Alternating Reverse Lunges" class="exercise-img">
                     <p><strong>Movimiento:</strong> Da un paso atrás bajando la rodilla de forma controlada.</p>
                     <p><strong>Para qué sirve:</strong> Esculpe cuádriceps y glúteos protegiendo las articulaciones de la rodilla.</p>
+
+                    <!-- Registro de Carga -->
+                    <div class="weight-tracker" onclick="event.stopPropagation()">
+                        <label for="w-vie-4">Carga Registrada:</label>
+                        <input type="text" id="w-vie-4" class="weight-input" placeholder="Ej. 10 kg">
+                    </div>
                 </div>
             </div>
         </div>
@@ -491,6 +556,12 @@
                     <img src="Bicycle_Crunches.jpeg" alt="Bicycle Crunches" class="exercise-img">
                     <p><strong>Movimiento:</strong> Tumbada boca arriba, lleva el codo contrario a la rodilla en movimiento de pedaleo.</p>
                     <p><strong>Para qué sirve:</strong> Activación total del recto abdominal y los oblicuos.</p>
+
+                    <!-- Registro de Carga -->
+                    <div class="weight-tracker" onclick="event.stopPropagation()">
+                        <label for="w-vie-5">Carga Registrada:</label>
+                        <input type="text" id="w-vie-5" class="weight-input" placeholder="Ej. 5 kg">
+                    </div>
                 </div>
             </div>
         </div>
@@ -504,6 +575,12 @@
                     <img src="Russian_Twists.jpeg" alt="Russian Twists" class="exercise-img">
                     <p><strong>Movimiento:</strong> Con el torso inclinado hacia atrás, gira el peso de lado a lado tocando el suelo.</p>
                     <p><strong>Para qué sirve:</strong> Define la cintura y potencia la fuerza rotacional del core.</p>
+
+                    <!-- Registro de Carga -->
+                    <div class="weight-tracker" onclick="event.stopPropagation()">
+                        <label for="w-vie-6">Carga Registrada:</label>
+                        <input type="text" id="w-vie-6" class="weight-input" placeholder="Ej. 5 kg">
+                    </div>
                 </div>
             </div>
         </div>
@@ -620,44 +697,56 @@
         </div>
     </div>
 
+    <!-- SCRIPTS -->
     <script>
+        // Funcionalidad de las tarjetas
         function toggleCard(card) {
+            // Cierra todas las tarjetas activas antes de abrir otra
+            document.querySelectorAll('.exercise-card.active').forEach(c => {
+                if(c !== card) c.classList.remove('active');
+            });
             card.classList.toggle('active');
         }
 
+        // LÓGICA DE REGISTRO DE PESO
+        document.addEventListener('DOMContentLoaded', () => {
+            const weightInputs = document.querySelectorAll('.weight-input');
+            
+            weightInputs.forEach(input => {
+                // Cargar el peso guardado previamente
+                const savedWeight = localStorage.getItem(input.id);
+                if(savedWeight) {
+                    input.value = savedWeight;
+                }
+
+                // Guardar automáticamente mientras escribes
+                input.addEventListener('input', (e) => {
+                    localStorage.setItem(e.target.id, e.target.value);
+                });
+            });
+        });
+
+        // ------------------
+        // LÓGICA DEL TEMPORIZADOR
+        // ------------------
         let audioCtx = null;
-
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-        }
-
+        function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
         function playTone(frequency, duration, type = 'sine') {
             try {
                 initAudio();
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
+                if (audioCtx.state === 'suspended') audioCtx.resume();
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
-                
                 osc.type = type;
                 osc.frequency.value = frequency;
-                
                 gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-                
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
-                
                 osc.start();
                 osc.stop(audioCtx.currentTime + duration);
-            } catch (e) {
-                console.log("Audio no soportado o bloqueado");
-            }
+            } catch (e) { console.log("Audio no soportado o bloqueado"); }
         }
-
         function playBeepShort() { playTone(600, 0.15); }
         function playBeepHigh() { playTone(880, 0.25); }
         function playDoubleBeep() { 
@@ -665,16 +754,8 @@
             setTimeout(() => playTone(1200, 0.25), 180);
         }
 
-        let timerInterval = null;
-        let isRunning = false;
-        let isPaused = false;
-        let currentPhase = 'prep'; 
-        let timeLeft = 10;
-        let currentRound = 1;
-        let maxRounds = 3;
-        let workDuration = 45;
-        let restDuration = 15;
-
+        let timerInterval = null, isRunning = false, isPaused = false;
+        let currentPhase = 'prep', timeLeft = 10, currentRound = 1, maxRounds = 3, workDuration = 45, restDuration = 15;
         const playSvgHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
         const pauseSvgHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
 
@@ -686,35 +767,20 @@
         function updateDisplay() {
             const statusEl = document.getElementById('timerStatusText');
             const clockEl = document.getElementById('timerClockDisplay');
-            
             document.getElementById('timerRoundsDisplay').textContent = `Ronda ${currentRound} de ${maxRounds}`;
             
+            let minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            let formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
             if(currentPhase === 'prep') {
-                statusEl.textContent = "⏳ Preparación";
-                statusEl.style.color = "#ffa726";
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                clockEl.style.fontSize = "2.2rem";
+                statusEl.textContent = "⏳ Preparación"; statusEl.style.color = "#ffa726"; clockEl.textContent = formattedTime; clockEl.style.fontSize = "2.2rem";
             } else if(currentPhase === 'round_announcement') {
-                statusEl.textContent = ""; 
-                statusEl.style.color = "#e87c3e";
-                clockEl.textContent = `¡RONDA ${currentRound}!`; 
-                clockEl.style.fontSize = "1.8rem"; 
+                statusEl.textContent = ""; statusEl.style.color = "#e87c3e"; clockEl.textContent = `¡RONDA ${currentRound}!`; clockEl.style.fontSize = "1.8rem"; 
             } else if(currentPhase === 'work') {
-                statusEl.textContent = `🔥 ¡Trabajo!`;
-                statusEl.style.color = "#e87c3e";
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                clockEl.style.fontSize = "2.2rem";
+                statusEl.textContent = `🔥 ¡Trabajo!`; statusEl.style.color = "#e87c3e"; clockEl.textContent = formattedTime; clockEl.style.fontSize = "2.2rem";
             } else {
-                statusEl.textContent = "💧 Descanso";
-                statusEl.style.color = "#4caf50";
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                clockEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                clockEl.style.fontSize = "2.2rem";
+                statusEl.textContent = "💧 Descanso"; statusEl.style.color = "#4caf50"; clockEl.textContent = formattedTime; clockEl.style.fontSize = "2.2rem";
             }
         }
 
@@ -726,67 +792,39 @@
 
         function startPauseTimer() {
             const mainBtnIcon = document.getElementById('mainBtnIcon');
-
             if (!isRunning && !isPaused) {
                 workDuration = getTimeInSeconds('workTime', 'workUnit');
                 restDuration = getTimeInSeconds('restTime', 'restUnit');
                 maxRounds = parseInt(document.getElementById('totalRounds').value) || 3;
-                
-                if(workDuration <= 0) {
-                    alert('Por favor ingresa un tiempo de trabajo válido.');
-                    return;
-                }
-
-                currentPhase = 'prep';
-                timeLeft = 10;
-                currentRound = 1;
-                
+                if(workDuration <= 0) { alert('Ingresa un tiempo válido.'); return; }
+                currentPhase = 'prep'; timeLeft = 10; currentRound = 1;
                 document.getElementById('timerConfigSection').style.display = 'none';
                 mainBtnIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + pauseSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
-                
-                isRunning = true;
-                isPaused = false;
-                playBeepHigh();
+                isRunning = true; isPaused = false; playBeepHigh();
             } else if (isRunning && !isPaused) {
-                isPaused = true;
-                isRunning = false;
-                const currentIcon = document.getElementById('mainBtnIcon');
-                currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+                isPaused = true; isRunning = false;
+                mainBtnIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
             } else if (isPaused) {
-                isPaused = false;
-                isRunning = true;
-                const currentIcon = document.getElementById('mainBtnIcon');
-                currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + pauseSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
+                isPaused = false; isRunning = true;
+                mainBtnIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + pauseSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
             }
-
             updateDisplay();
             if(timerInterval) clearInterval(timerInterval);
-            
             timerInterval = setInterval(() => {
                 if (isRunning && !isPaused) {
                     if (timeLeft > 0) {
                         timeLeft--;
-                        if (currentPhase !== 'round_announcement' && timeLeft <= 3 && timeLeft > 0) {
-                            playBeepShort();
-                        }
+                        if (currentPhase !== 'round_announcement' && timeLeft <= 3 && timeLeft > 0) playBeepShort();
                         updateDisplay();
                     } else {
                         if (currentPhase === 'prep') {
                             triggerRoundAnnouncement();
                         } else if (currentPhase === 'round_announcement') {
-                            currentPhase = 'work';
-                            timeLeft = workDuration;
-                            playBeepHigh();
-                            updateDisplay();
+                            currentPhase = 'work'; timeLeft = workDuration; playBeepHigh(); updateDisplay();
                         } else if (currentPhase === 'work') {
                             if (restDuration > 0) {
-                                currentPhase = 'rest';
-                                timeLeft = restDuration;
-                                playBeepShort();
-                                updateDisplay();
-                            } else {
-                                handleNextRoundProgression();
-                            }
+                                currentPhase = 'rest'; timeLeft = restDuration; playBeepShort(); updateDisplay();
+                            } else { handleNextRoundProgression(); }
                         } else if (currentPhase === 'rest') {
                             handleNextRoundProgression();
                         }
@@ -795,51 +833,28 @@
             }, 1000);
         }
 
-        function triggerRoundAnnouncement() {
-            currentPhase = 'round_announcement';
-            timeLeft = 2; 
-            playDoubleBeep();
-            updateDisplay();
-        }
+        function triggerRoundAnnouncement() { currentPhase = 'round_announcement'; timeLeft = 2; playDoubleBeep(); updateDisplay(); }
 
         function handleNextRoundProgression() {
             if (currentRound < maxRounds) {
-                currentRound++;
-                triggerRoundAnnouncement();
+                currentRound++; triggerRoundAnnouncement();
             } else {
-                clearInterval(timerInterval);
-                isRunning = false;
-                isPaused = false;
-                playDoubleBeep();
+                clearInterval(timerInterval); isRunning = false; isPaused = false; playDoubleBeep();
                 document.getElementById('timerStatusText').textContent = "¡Completado! 🎉";
                 document.getElementById('timerClockDisplay').textContent = "00:00";
-                
-                const currentIcon = document.getElementById('mainBtnIcon');
-                currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
-                
+                document.getElementById('mainBtnIcon').outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
                 document.getElementById('timerConfigSection').style.display = 'flex';
             }
         }
 
         function resetTimer() {
-            clearInterval(timerInterval);
-            isRunning = false;
-            isPaused = false;
-            
-            workDuration = getTimeInSeconds('workTime', 'workUnit');
-            timeLeft = 10;
-            currentPhase = 'prep';
-            currentRound = 1;
-
+            clearInterval(timerInterval); isRunning = false; isPaused = false;
+            workDuration = getTimeInSeconds('workTime', 'workUnit'); timeLeft = 10; currentPhase = 'prep'; currentRound = 1;
             document.getElementById('timerConfigSection').style.display = 'flex';
-            
-            const currentIcon = document.getElementById('mainBtnIcon');
-            currentIcon.outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
-            
+            document.getElementById('mainBtnIcon').outerHTML = '<svg id="mainBtnIcon" viewBox="0 0 24 24">' + playSvgHTML.replace('<svg viewBox="0 0 24 24">', '').replace('</svg>', '') + '</svg>';
             document.getElementById('timerStatusText').textContent = "Listo para empezar";
             updateDisplay();
         }
     </script>
-
 </body>
 </html>
